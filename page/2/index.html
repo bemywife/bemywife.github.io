@@ -180,12 +180,62 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            Schedule
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            Commonweal 404
           </a>
         </li>
       
@@ -222,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/bemywife/blog/Python格式错误20170823/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/bemywife/blog/Hexo创建文章说明20170823/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fightzhao">
@@ -241,7 +291,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/Python格式错误20170823/" itemprop="url">SyntaxError: Non-ASCII character '\xe9'</a></h1>
+                <a class="post-title-link" href="/blog/Hexo创建文章说明20170823/" itemprop="url">Hexo创建文章说明</a></h1>
         
 
         <div class="post-meta">
@@ -276,8 +326,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
                   </a>
                 </span>
 
@@ -315,7 +365,11 @@
       
         
           
-            <h1 id="python-报SyntaxError-Non-ASCII-character-‘-xe9’"><a href="#python-报SyntaxError-Non-ASCII-character-‘-xe9’" class="headerlink" title="python 报SyntaxError: Non-ASCII character ‘\xe9’"></a>python 报SyntaxError: Non-ASCII character ‘\xe9’</h1><p>在Python中运行时出现<br>SyntaxError: Non-ASCII character ‘\xe9’ in file 异常……<br><img src="https://ws1.sinaimg.cn/large/aec7f069gy1fj6dwylmsnj211f02r0ta.jpg" alt=""><br>Python的默认编码文件是用的ASCII码，你将文件存成了UTF-8也没用。<br>解决办法很简单：<br>只要在文件开头加入 # – coding: UTF-8 – 或者 #coding=utf-8 就行了。</p>
+            <h1 id="1-Hexo配置上传到github的坑"><a href="#1-Hexo配置上传到github的坑" class="headerlink" title="1.Hexo配置上传到github的坑"></a>1.Hexo配置上传到github的坑</h1><p>在Hexo的配置文件<em>congig.yml</em>  中的deploy中一定要距最左边两个空格，每个：后要有一个空格，如下：<br><img src="/images/02.png" alt=""><br>其他配置直接见Hexo的官网说明</p>
+<h1 id="2-采用手动创建"><a href="#2-采用手动创建" class="headerlink" title="2.采用手动创建"></a>2.采用手动创建</h1><h2 id="2-1在-hexo-主目录下-source-posts-新建以-md-为后缀的文件。"><a href="#2-1在-hexo-主目录下-source-posts-新建以-md-为后缀的文件。" class="headerlink" title="2.1在 hexo 主目录下 source -> _posts 新建以 .md 为后缀的文件。"></a>2.1在 hexo 主目录下 source -> _posts 新建以 .md 为后缀的文件。</h2><p><img src="/images/01.png" alt=""><br>Front-matter 是文件最上方以 — 分隔的区域，用于指定个别文件的变量，就是头部位置，举例来说：<br>- - -<br>title: Hello World<br>date: 2017/7/13 20:46:25<br>- - -</p>
+<p>以下是预先定义的参数，您可在模板中使用这些参数值并加以利用。<br><img src="/images/03.png" alt=""></p>
+<h2 id="2-2分类和标签"><a href="#2-2分类和标签" class="headerlink" title="2.2分类和标签"></a>2.2分类和标签</h2><p>但是Hexo不支持指定多个同级分类。下面的指定方法：<br>categories:<br>- Diary<br>- Life<br>会使分类Life成为Diary的子分类，而不是并列分类。因此，有必要为您的文章选择尽可能准确的分类</p>
+<h1 id="3-其他Markdown语法："><a href="#3-其他Markdown语法：" class="headerlink" title="3.其他Markdown语法："></a>3.其他Markdown语法：</h1><p>见博客其他文章</p>
 
           
         
