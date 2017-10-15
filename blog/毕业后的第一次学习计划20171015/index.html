@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Set | fightzhao</title>
+  <title>毕业后的第一次学习计划 | fightzhao</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Python中什么是setdict的作用是建立一组 key 和一组 value 的映射关系，dict的key是不能重复的。 有的时候，我们只想要 dict 的 key，不关心 key 对应的 value，目的就是保证这个集合的元素不会重复，这时，set就派上用场了。 set 持有一系列元素，这一点和 list 很像，但是set的元素没有重复，而且是无序的，这点和 dict 的 key很像。 创建">
+  <meta name="description" content="毕业后的第一次学习计划打算在三年后也就是2021年左右回到老家合肥发展，目标是三年后可以在合肥每年拿到20W，计划是做后台开发。坚持把买的视频看完，这个以后把PHP看完">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Set">
-<meta property="og:url" content="https://github.com/bemywife/blog/Set20170903/index.html">
+<meta property="og:title" content="毕业后的第一次学习计划">
+<meta property="og:url" content="https://github.com/bemywife/blog/毕业后的第一次学习计划20171015/index.html">
 <meta property="og:site_name" content="fightzhao">
-<meta property="og:description" content="Python中什么是setdict的作用是建立一组 key 和一组 value 的映射关系，dict的key是不能重复的。 有的时候，我们只想要 dict 的 key，不关心 key 对应的 value，目的就是保证这个集合的元素不会重复，这时，set就派上用场了。 set 持有一系列元素，这一点和 list 很像，但是set的元素没有重复，而且是无序的，这点和 dict 的 key很像。 创建">
+<meta property="og:description" content="毕业后的第一次学习计划打算在三年后也就是2021年左右回到老家合肥发展，目标是三年后可以在合肥每年拿到20W，计划是做后台开发。坚持把买的视频看完，这个以后把PHP看完">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-23T07:25:11.000Z">
+<meta property="og:updated_time" content="2017-10-15T15:34:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Set">
-<meta name="twitter:description" content="Python中什么是setdict的作用是建立一组 key 和一组 value 的映射关系，dict的key是不能重复的。 有的时候，我们只想要 dict 的 key，不关心 key 对应的 value，目的就是保证这个集合的元素不会重复，这时，set就派上用场了。 set 持有一系列元素，这一点和 list 很像，但是set的元素没有重复，而且是无序的，这点和 dict 的 key很像。 创建">
+<meta name="twitter:title" content="毕业后的第一次学习计划">
+<meta name="twitter:description" content="毕业后的第一次学习计划打算在三年后也就是2021年左右回到老家合肥发展，目标是三年后可以在合肥每年拿到20W，计划是做后台开发。坚持把买的视频看完，这个以后把PHP看完">
   
     <link rel="alternative" href="/atom.xml" title="fightzhao" type="application/atom+xml">
   
@@ -233,11 +233,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="python-Set" class="article article-type-python" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="日记-毕业后的第一次学习计划" class="article article-type-日记" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/blog/Set20170903/" class="article-date">
-      <time datetime="2017-09-03T14:52:15.000Z" itemprop="datePublished">2017-09-03</time>
+      <a href="/blog/毕业后的第一次学习计划20171015/" class="article-date">
+      <time datetime="2017-10-15T15:32:15.000Z" itemprop="datePublished">2017-10-15</time>
 </a>
     </div>
   
@@ -250,7 +250,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Set
+      毕业后的第一次学习计划
     </h1>
   
 
@@ -267,26 +267,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Python中什么是set<br>dict的作用是建立一组 key 和一组 value 的映射关系，dict的key是不能重复的。</p>
-<p>有的时候，我们只想要 dict 的 key，不关心 key 对应的 value，目的就是保证这个集合的元素不会重复，这时，set就派上用场了。</p>
-<p>set 持有一系列元素，这一点和 list 很像，但是set的元素没有重复，而且是无序的，这点和 dict 的 key很像。</p>
-<p>创建 set 的方式是调用 set() 并传入一个 list，list的元素将作为set的元素：</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>s = set(/[‘A’, ‘B’, ‘C’/])<br>可以查看 set 的内容：</p>
-<p>print s<br>set(/[‘A’, ‘C’, ‘B’/])<br>请注意，上述打印的形式类似 list， 但它不是 list，仔细看还可以发现，打印的顺序和原始 list 的顺序有可能是不同的，因为set内部存储的元素是无序的。</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>因为set不能包含重复的元素，所以，当我们传入包含重复元素的 list 会怎么样呢？</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>s = set(/[‘A’, ‘B’, ‘C’, ‘C’/])<br>print s<br>set(/[‘A’, ‘C’, ‘B’/])<br>len(s)<br>3<br>结果显示，set会自动去掉重复的元素，原来的list有4个元素，但set只有3个元素。</p>
-</blockquote>
-</blockquote>
-</blockquote>
+        <h1 id="毕业后的第一次学习计划"><a href="#毕业后的第一次学习计划" class="headerlink" title="毕业后的第一次学习计划"></a>毕业后的第一次学习计划</h1><p>打算在三年后也就是2021年左右回到老家合肥发展，目标是三年后可以在合肥每年拿到20W，计划是做后台开发。坚持把买的视频看完，这个以后把PHP看完</p>
 
       
       
@@ -296,13 +277,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/blog/Set20170903/">Set</a></p>
+        <p><span>本文标题:</span><a href="/blog/毕业后的第一次学习计划20171015/">毕业后的第一次学习计划</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 喜欢Android的PHPer 的个人博客">喜欢Android的PHPer</a></p>
-        <p><span>发布时间:</span>2017年09月03日 - 22时52分</p>
-        <p><span>最后更新:</span>2017年09月23日 - 15时25分</p>
+        <p><span>发布时间:</span>2017年10月15日 - 23时32分</p>
+        <p><span>最后更新:</span>2017年10月15日 - 23时34分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/blog/Set20170903/" title="Set">https://github.com/bemywife/blog/Set20170903/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://github.com/bemywife/blog/Set20170903/　　作者: 喜欢Android的PHPer" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/blog/毕业后的第一次学习计划20171015/" title="毕业后的第一次学习计划">https://github.com/bemywife/blog/毕业后的第一次学习计划20171015/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://github.com/bemywife/blog/毕业后的第一次学习计划20171015/　　作者: 喜欢Android的PHPer" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -315,18 +296,9 @@
 
 <nav id="article-nav">
   
-    <a href="/blog/毕业后的第一次学习计划20171015/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          毕业后的第一次学习计划
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/Python之创建tuple20170903/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python之创建tuple</div>
+    <a href="/blog/Set20170903/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Set</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -337,7 +309,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#毕业后的第一次学习计划"><span class="toc-number">1.</span> <span class="toc-text">毕业后的第一次学习计划</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -403,13 +375,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/blog/毕业后的第一次学习计划20171015/" title="上一篇: 毕业后的第一次学习计划">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/blog/Python之创建tuple20170903/" title="下一篇: Python之创建tuple">
+            <a href="/blog/Set20170903/" title="下一篇: Set">
                 <i class="fa fa-angle-right"></i>
             </a>
         
