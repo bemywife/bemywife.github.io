@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>Category: python | fightzhao</title>
+<title>php常见问题一 | fightzhao</title>
 
 
     <link rel="alternate" href="/atom.xml" title="fightzhao" type="application/atom+xml">
@@ -123,38 +123,105 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <h3> 
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="php常见问题一">
+            
+	            php常见问题一
+            
+        </h1>
+        <div class="post-meta">
     
-        python 
     
-</h3>
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/php">
+            php
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a href="/tags/php">
+               php
+            </a>
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2018/03/13</span>
+    </span>
+</div>
 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title"> 
-                    <a href="/blog/Python格式错误20170823/">SyntaxError: Non-ASCII character '\xe9'</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2017年08月23日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    python 报SyntaxError: Non-ASCII character ‘\xe9’在Python中运行时出现SyntaxError: Non-ASCII character ‘\xe9’ in file 异常……Pytho...
-                
-            </p> 
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="1-PHP中-与-的区别"><a href="#1-PHP中-与-的区别" class="headerlink" title="1.PHP中==与===的区别"></a>1.PHP中==与===的区别</h2><p>===是恒等计算符 同时检查表达式的值与类型<br>==是比较运算符号 不会检查条件式的表达式的类型</p>
+<hr>
+<h2 id="2-PHP中单双引号的区别"><a href="#2-PHP中单双引号的区别" class="headerlink" title="2. PHP中单双引号的区别"></a>2. PHP中单双引号的区别</h2><p>“” 双引号里面的字段会经过编译器解释，然后再当作HTML代码输出。<br>‘’ 单引号里面的不进行解释，直接输出。<br>所以在效率上 单引号比双引号要快了。</p>
+<p>例如：<br>$abc = ’my name is tome’;<br>echo $abc //结果是:my name is tom<br>echo ‘$abc’ //结果是:$abc<br>echo “$abc” //结果是:my name is tom</p>
+<p>PHP引号使用原则<br>1.字符串的值用引号<br>2.PHP中尽量用单引号,HTML代码全部用双引号<br>3.在包含变量的时候,用双引号可以简化操作<br>4.复杂的情况下用大括号包起来<br>PHP引号还有一个用处就是，有的时候需要用php生成文本文件，换行符\n需要用双引号才能好使，单引号则会直接把\n当成字符输出。</p>
+<h2 id="3-isset-和empty-的区别"><a href="#3-isset-和empty-的区别" class="headerlink" title="3. isset()和empty()的区别"></a>3. isset()和empty()的区别</h2><p>PHP的isset()函数 一般用来检测变量是否设置<br>格式：bool isset ( mixed var [, mixed var [, …]] )</p>
+<p>功能：检测变量是否设置</p>
+<p>返回值：</p>
+<p>若变量不存在则返回 FALSE<br>若变量存在且其值为NULL，也返回 FALSE<br>若变量存在且值不为NULL，则返回 TURE<br>同时检查多个变量时，每个单项都符合上一条要求时才返回 TRUE，否则结果为 FALSE<br>版本：PHP 3, PHP 4, PHP 5<br>更多说明：<br>使用 unset() 释放变量之后，它将不再是 isset()。<br>PHP函数isset()只能用于变量，传递任何其它参数都将造成解析错误。<br>检测常量是否已设置可使用 defined() 函数。</p>
+<p>PHP的empty()函数 判断值为否为空</p>
+<p>格式：bool empty ( mixed var )</p>
+<p>功能：检查一个变量是否为空</p>
+<p>返回值：</p>
+<p>若变量不存在则返回 TRUE<br>若变量存在且其值为””、0、”0”、NULL、、FALSE、array()、var $var; 以及没有任何属性的对象，则返回 TURE<br>若变量存在且值不为””、0、”0”、NULL、、FALSE、array()、var $var; 以及没有任何属性的对象，则返回 FALSE</p>
+<h2 id="4-数组常见操作集合"><a href="#4-数组常见操作集合" class="headerlink" title="4.数组常见操作集合"></a>4.数组常见操作集合</h2><p>array_splice()删除数组成员，数组key的值也重新排列，和foreach遍历后使用unset的区别是key不发生改变。<br>array_flip()交换数组的键值和值</p>
+<h2 id="5-在页头使用date-default-timezone-set-设置我的默认时区为北京时间，即-lt-php-date-default-timezone-set-“PRC”-gt-就可以了。"><a href="#5-在页头使用date-default-timezone-set-设置我的默认时区为北京时间，即-lt-php-date-default-timezone-set-“PRC”-gt-就可以了。" class="headerlink" title="5.在页头使用date_default_timezone_set()设置我的默认时区为北京时间，即 &lt;?php date_default_timezone_set(“PRC”); ?&gt;就可以了。"></a>5.在页头使用date_default_timezone_set()设置我的默认时区为北京时间，即 &lt;?php date_default_timezone_set(“PRC”); ?&gt;就可以了。</h2><h2 id="6-include和require区别"><a href="#6-include和require区别" class="headerlink" title="6.include和require区别"></a>6.include和require区别</h2><p>include和require文件都可以打开文件，但是include打开文件这个执行失败后，会产生警告，但是不会影响后面程序的运行，而require执行失败后后面的程序都不会被执行，所以会产生致命错误.</p>
+<p>（1）提倡只使用include或require语句来引入文件，非迫不得已不要用include_once和require_once；<br>（2）后缀带_once的语句就是引入过一次这个文件后，就不会重新引入了；<br>（3）require找不到引入文件时会报Fatal Error级别错误并停止运行，include找不到文件时只报WARNING级别错误然后继续运行。<br>(4)require()函数包含进来的内容被当成当前文件的一个组成部分,所以当包含进来的文件有语法错误或者文件不存在的时候,那当前文件的PHP脚本都不再执行。<br>(5)include()函数相当于指定这个文件的路径,当被包含的文件有错时,不会影响到本身的程序运行。</p>
+<h2 id="7-逻辑运算符，是取反的意思。"><a href="#7-逻辑运算符，是取反的意思。" class="headerlink" title="7.! 逻辑运算符，是取反的意思。"></a>7.! 逻辑运算符，是取反的意思。</h2><p>empty是方法。<br>//        两者区别在于，如果$a没有定义。empty不会出错。而!$a会出错<br>$a如果没有定义，可以使用empty，但是使用！会出错</p>
+<h2 id="8-s-null-和-null为何结果不同？"><a href="#8-s-null-和-null为何结果不同？" class="headerlink" title="8.! s_null 和==null为何结果不同？"></a>8.! s_null 和==null为何结果不同？</h2><p>is_null() 函数检测变量是否为 NULL<br>null PHP中一种特殊的数据类型,表示空值,即表示没有为该变量设置任何值null(空值)</p>
+<p>例如：<br>&lt;?php<br>$str = ‘’;</p>
+<p>var_dump(is_null($str));<br>//返回 false，虽然变量$str被赋值为空，但不是null类型，所以返回false</p>
+<p>var_dump($str == null);<br>//返回true，== 只判断值是否相等，而不判断数据的类型，所以变量$str的空<br>值等于null(相当于空值)</p>
+<p>var_dump($str === null);<br>//返回false，=== 不仅判断值是否相等，还判断数据的类型，所以变量$str的空<br>值（字符串）不等于null （特殊的数据类型）<br>?&gt;</p>
+
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
         </div>
-    </article>
- 
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/blog/毕业后的第一次学习计划20171015/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
 
 
+    <div id="comments">
+        
+	<!--PC和WAP自适应版-->
+<div id="SOHUCS"></div>
+<script type="text/javascript">
+	(function(){var appid='cyt8KmUC1';var conf='prod_855a68d3b3d91855360a6215672a505a';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
+	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
+</script>	
 
-
+    </div>
 
 
 
