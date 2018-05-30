@@ -176,7 +176,130 @@
     </div>
     
     <div class="post-body post-content">
-        <h2 id="待更新"><a href="#待更新" class="headerlink" title="待更新"></a>待更新</h2>
+        <h2 id="主要从数据库的设计、后台设计、以及接口三个方面探讨"><a href="#主要从数据库的设计、后台设计、以及接口三个方面探讨" class="headerlink" title="主要从数据库的设计、后台设计、以及接口三个方面探讨"></a>主要从数据库的设计、后台设计、以及接口三个方面探讨</h2><h2 id="1、db的设计"><a href="#1、db的设计" class="headerlink" title="1、db的设计"></a>1、db的设计</h2><p>   这次的改版主要用于官网的保险页面改版，产品+分组+分类的设计思想，区别在于分组和产品是一对多的关系（用到了关系表），分类和产品是一对一的关系。<br>    CREATE TABLE “PA18NEWDATA”.”PC_CATEGORY” (<br>    “ID” VARCHAR2(16 BYTE) NOT NULL ,<br>    “NAME” VARCHAR2(100 BYTE) DEFAULT ‘’  NOT NULL ,<br>    “PLATE_CODE” VARCHAR2(25 BYTE) DEFAULT ‘’  NULL ,<br>    “CLASS_ICON” VARCHAR2(35 BYTE) DEFAULT ‘’  NULL ,<br>    “TYPE” NUMBER(1) DEFAULT 0  NULL ,<br>    “URL” VARCHAR2(1000 BYTE) NULL ,<br>    “SORT” NUMBER(10) DEFAULT 1  NULL ,<br>    “PARENT_ID” VARCHAR2(16 BYTE) NULL ,<br>    “LOGO” VARCHAR2(255 BYTE) DEFAULT ‘’  NULL ,<br>    “PIC” VARCHAR2(255 BYTE) DEFAULT ‘’  NULL ,<br>    “STATUS” VARCHAR2(4 BYTE) DEFAULT 0  NULL ,<br>    “CREATE_TIME” VARCHAR2(11 BYTE) DEFAULT 0  NULL ,<br>    “UPDATE_TIME” VARCHAR2(11 BYTE) DEFAULT 0  NULL ,<br>    “SEO_TITLE” VARCHAR2(255 BYTE) DEFAULT ‘’  NULL ,<br>    “SEO_KEYWORD” VARCHAR2(255 BYTE) DEFAULT ‘’  NULL ,<br>    “SEO_DESC” VARCHAR2(500 BYTE) DEFAULT ‘’  NULL<br>    )<br>    LOGGING<br>    NOCOMPRESS<br>    NOCACHE</p>
+<pre><code>;
+COMMENT ON TABLE &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot; IS &apos;PC分类表&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;ID&quot; IS &apos;表ID&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;NAME&quot; IS &apos;分组名称&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;PLATE_CODE&quot; IS &apos;板块&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;CLASS_ICON&quot; IS &apos;前端类名&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;TYPE&quot; IS &apos;类型：0 文本，1 H5，2 原生&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;URL&quot; IS &apos;链接&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;SORT&quot; IS &apos;排序&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;PARENT_ID&quot; IS &apos;父级&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;LOGO&quot; IS &apos;logo&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;PIC&quot; IS &apos;分组图片&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;STATUS&quot; IS &apos;状态（0启用，1禁用）&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;CREATE_TIME&quot; IS &apos;添加时间&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;UPDATE_TIME&quot; IS &apos;更新时间&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;SEO_TITLE&quot; IS &apos;seo标题&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;SEO_KEYWORD&quot; IS &apos;seo关键词&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;SEO_DESC&quot; IS &apos;seo描述&apos;;
+
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot; ADD CHECK (&quot;ID&quot; IS NOT NULL);
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot; ADD CHECK (&quot;NAME&quot; IS NOT NULL);
+
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot; ADD PRIMARY KEY (&quot;ID&quot;);
+
+---------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot; (
+&quot;ID&quot; CHAR(16 BYTE) NOT NULL ,
+&quot;NAME&quot; VARCHAR2(100 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;NAME_LABEL&quot; VARCHAR2(100 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;COMPANY&quot; VARCHAR2(100 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;TYPE&quot; NUMBER(1) DEFAULT 0  NULL ,
+&quot;URL&quot; VARCHAR2(1000 BYTE) NULL ,
+&quot;CATEGORY_ID&quot; VARCHAR2(16 BYTE) NOT NULL ,
+&quot;PRICE_DESC&quot; VARCHAR2(100 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;PRICE_DESC_SPEC&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;RATE&quot; VARCHAR2(100 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;TERM_LIMIT&quot; VARCHAR2(100 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;NUMBER_DESC&quot; VARCHAR2(100 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;SHORT_DESC&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;SHORT_DESC_SPEC&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;DESC&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;DESC_SPEC&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;IS_SHOW&quot; NUMBER(1) DEFAULT 0  NULL ,
+&quot;BUTTON_TEXT&quot; VARCHAR2(100 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;SORT&quot; NUMBER(10) DEFAULT 1  NULL ,
+&quot;PIC&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;MIDDLE_PIC&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;SEO_TITLE&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;SEO_KEYWORD&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;SEO_DESC&quot; VARCHAR2(500 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;STATUS&quot; NUMBER(1) DEFAULT 0  NULL ,
+&quot;CREATE_TIME&quot; VARCHAR2(11 BYTE) DEFAULT 0  NULL ,
+&quot;UPDATE_TIME&quot; VARCHAR2(11 BYTE) DEFAULT 0  NULL 
+)
+LOGGING
+NOCOMPRESS
+NOCACHE
+
+;
+COMMENT ON TABLE &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot; IS &apos;PC产品表&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;ID&quot; IS &apos;# ID&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;NAME&quot; IS &apos;# 名称&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;NAME_LABEL&quot; IS &apos;# 小标签&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;COMPANY&quot; IS &apos;# 专业公司&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;TYPE&quot; IS &apos;# 类型：0 文本，1 H5，2 原生&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;URL&quot; IS &apos;链接&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;CATEGORY_ID&quot; IS &apos;# 分类ID&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;PRICE_DESC&quot; IS &apos;# 价格描述&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;PRICE_DESC_SPEC&quot; IS &apos;价格描述特殊处理词&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;RATE&quot; IS &apos;# 比率&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;TERM_LIMIT&quot; IS &apos;# 期限&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;NUMBER_DESC&quot; IS &apos;# 数量描述&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;SHORT_DESC&quot; IS &apos;# 简短描述&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;SHORT_DESC_SPEC&quot; IS &apos;简短描述特殊处理词&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;DESC&quot; IS &apos;# 描述&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;DESC_SPEC&quot; IS &apos;描述特殊处理词&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;IS_SHOW&quot; IS &apos;# 是否显示按钮：0不显示，1显示&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;BUTTON_TEXT&quot; IS &apos;# 按钮文本&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;SORT&quot; IS &apos;排序&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;PIC&quot; IS &apos;# 图片路径&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;MIDDLE_PIC&quot; IS &apos;中图&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;SEO_TITLE&quot; IS &apos;seo标题&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;SEO_KEYWORD&quot; IS &apos;seo关键词&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;SEO_DESC&quot; IS &apos;seo描述&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;STATUS&quot; IS &apos;状态(0启用，1禁用)&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;CREATE_TIME&quot; IS &apos;添加时间&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot;.&quot;UPDATE_TIME&quot; IS &apos;更新时间&apos;;
+
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot; ADD CHECK (&quot;ID&quot; IS NOT NULL);
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot; ADD CHECK (&quot;CATEGORY_ID&quot; IS NOT NULL);
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_PRODUCT&quot; ADD PRIMARY KEY (&quot;ID&quot;);
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot; (
+&quot;ID&quot; VARCHAR2(16 BYTE) NOT NULL ,
+&quot;PRODUCT_ID&quot; VARCHAR2(16 BYTE) NOT NULL ,
+&quot;RROTECT_TYPE&quot; VARCHAR2(100 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;RANGE&quot; VARCHAR2(1000 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;PLAN&quot; VARCHAR2(3000 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;CREATE_TIME&quot; VARCHAR2(11 BYTE) DEFAULT 0  NULL ,
+&quot;UPDATE_TIME&quot; VARCHAR2(11 BYTE) DEFAULT 0  NULL ,
+&quot;SORT&quot; NUMBER(10) DEFAULT 1  NULL 
+)
+LOGGING
+NOCOMPRESS
+NOCACHE
+
+;
+COMMENT ON TABLE &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot; IS &apos;PC保障计划表&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot;.&quot;ID&quot; IS &apos;表ID&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot;.&quot;PRODUCT_ID&quot; IS &apos;产品ID&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot;.&quot;RROTECT_TYPE&quot; IS &apos;保障类型&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot;.&quot;RANGE&quot; IS &apos;保障范围&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot;.&quot;PLAN&quot; IS &apos;计划&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot;.&quot;CREATE_TIME&quot; IS &apos;添加时间&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot;.&quot;UPDATE_TIME&quot; IS &apos;更新时间&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot;.&quot;SORT&quot; IS &apos;排序&apos;;
+
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot; ADD CHECK (&quot;ID&quot; IS NOT NULL);
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot; ADD CHECK (&quot;PRODUCT_ID&quot; IS NOT NULL);
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot; ADD PRIMARY KEY (&quot;ID&quot;);
+</code></pre>
     </div>
 
     <div class="post-footer">   
