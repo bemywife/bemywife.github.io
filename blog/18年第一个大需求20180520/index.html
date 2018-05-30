@@ -176,8 +176,30 @@
     </div>
     
     <div class="post-body post-content">
-        <h2 id="主要从数据库的设计、后台设计、以及接口三个方面探讨"><a href="#主要从数据库的设计、后台设计、以及接口三个方面探讨" class="headerlink" title="主要从数据库的设计、后台设计、以及接口三个方面探讨"></a>主要从数据库的设计、后台设计、以及接口三个方面探讨</h2><h2 id="1、db的设计"><a href="#1、db的设计" class="headerlink" title="1、db的设计"></a>1、db的设计</h2><p>   这次的改版主要用于官网的保险页面改版，产品+分组+分类的设计思想，区别在于分组和产品是一对多的关系（用到了关系表），分类和产品是一对一的关系。<br>    CREATE TABLE “PA18NEWDATA”.”PC_CATEGORY” (<br>    “ID” VARCHAR2(16 BYTE) NOT NULL ,<br>    “NAME” VARCHAR2(100 BYTE) DEFAULT ‘’  NOT NULL ,<br>    “PLATE_CODE” VARCHAR2(25 BYTE) DEFAULT ‘’  NULL ,<br>    “CLASS_ICON” VARCHAR2(35 BYTE) DEFAULT ‘’  NULL ,<br>    “TYPE” NUMBER(1) DEFAULT 0  NULL ,<br>    “URL” VARCHAR2(1000 BYTE) NULL ,<br>    “SORT” NUMBER(10) DEFAULT 1  NULL ,<br>    “PARENT_ID” VARCHAR2(16 BYTE) NULL ,<br>    “LOGO” VARCHAR2(255 BYTE) DEFAULT ‘’  NULL ,<br>    “PIC” VARCHAR2(255 BYTE) DEFAULT ‘’  NULL ,<br>    “STATUS” VARCHAR2(4 BYTE) DEFAULT 0  NULL ,<br>    “CREATE_TIME” VARCHAR2(11 BYTE) DEFAULT 0  NULL ,<br>    “UPDATE_TIME” VARCHAR2(11 BYTE) DEFAULT 0  NULL ,<br>    “SEO_TITLE” VARCHAR2(255 BYTE) DEFAULT ‘’  NULL ,<br>    “SEO_KEYWORD” VARCHAR2(255 BYTE) DEFAULT ‘’  NULL ,<br>    “SEO_DESC” VARCHAR2(500 BYTE) DEFAULT ‘’  NULL<br>    )<br>    LOGGING<br>    NOCOMPRESS<br>    NOCACHE</p>
-<pre><code>;
+        <h2 id="主要从数据库的设计、后台设计、以及接口三个方面探讨"><a href="#主要从数据库的设计、后台设计、以及接口三个方面探讨" class="headerlink" title="主要从数据库的设计、后台设计、以及接口三个方面探讨"></a>主要从数据库的设计、后台设计、以及接口三个方面探讨</h2><h2 id="1、db的设计"><a href="#1、db的设计" class="headerlink" title="1、db的设计"></a>1、db的设计</h2><p>   这次的改版主要用于官网的保险页面改版，产品+分组+分类的设计思想，区别在于分组和产品是一对多的关系（用到了关系表），分类和产品是一对一的关系。</p>
+<pre><code>CREATE TABLE &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot; (
+&quot;ID&quot; VARCHAR2(16 BYTE) NOT NULL ,
+&quot;NAME&quot; VARCHAR2(100 BYTE) DEFAULT &apos;&apos;  NOT NULL ,
+&quot;PLATE_CODE&quot; VARCHAR2(25 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;CLASS_ICON&quot; VARCHAR2(35 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;TYPE&quot; NUMBER(1) DEFAULT 0  NULL ,
+&quot;URL&quot; VARCHAR2(1000 BYTE) NULL ,
+&quot;SORT&quot; NUMBER(10) DEFAULT 1  NULL ,
+&quot;PARENT_ID&quot; VARCHAR2(16 BYTE) NULL ,
+&quot;LOGO&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;PIC&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;STATUS&quot; VARCHAR2(4 BYTE) DEFAULT 0  NULL ,
+&quot;CREATE_TIME&quot; VARCHAR2(11 BYTE) DEFAULT 0  NULL ,
+&quot;UPDATE_TIME&quot; VARCHAR2(11 BYTE) DEFAULT 0  NULL ,
+&quot;SEO_TITLE&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;SEO_KEYWORD&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;SEO_DESC&quot; VARCHAR2(500 BYTE) DEFAULT &apos;&apos;  NULL 
+)
+LOGGING
+NOCOMPRESS
+NOCACHE
+
+;
 COMMENT ON TABLE &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot; IS &apos;PC分类表&apos;;
 COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;ID&quot; IS &apos;表ID&apos;;
 COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CATEGORY&quot;.&quot;NAME&quot; IS &apos;分组名称&apos;;
@@ -299,6 +321,1377 @@ COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot;.&quot;SOR
 ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot; ADD CHECK (&quot;ID&quot; IS NOT NULL);
 ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot; ADD CHECK (&quot;PRODUCT_ID&quot; IS NOT NULL);
 ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_SECURITY_PLAN&quot; ADD PRIMARY KEY (&quot;ID&quot;);
+
+
+
+CREATE TABLE &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot; (
+&quot;ID&quot; VARCHAR2(16 BYTE) NOT NULL ,
+&quot;NAME&quot; VARCHAR2(64 BYTE) DEFAULT &apos;&apos;  NOT NULL ,
+&quot;CLASS_ICON&quot; VARCHAR2(35 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;URL&quot; VARCHAR2(1000 BYTE) NULL ,
+&quot;SORT&quot; NUMBER(10) DEFAULT 1  NULL ,
+&quot;PARENT_ID&quot; VARCHAR2(16 BYTE) NULL ,
+&quot;LOGO&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;PIC&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;STATUS&quot; VARCHAR2(4 BYTE) DEFAULT 0  NULL ,
+&quot;CREATE_TIME&quot; VARCHAR2(11 BYTE) DEFAULT 0  NULL ,
+&quot;UPDATE_TIME&quot; VARCHAR2(11 BYTE) DEFAULT 0  NULL ,
+&quot;SEO_TITLE&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;SEO_KEYWORD&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;SEO_DESC&quot; VARCHAR2(500 BYTE) DEFAULT &apos;&apos;  NULL 
+)
+LOGGING
+NOCOMPRESS
+NOCACHE
+
+;
+COMMENT ON TABLE &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot; IS &apos;PC 分组表&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot;.&quot;ID&quot; IS &apos;表ID&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot;.&quot;NAME&quot; IS &apos;分组名称&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot;.&quot;CLASS_ICON&quot; IS &apos;前端类名&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot;.&quot;URL&quot; IS &apos;链接&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot;.&quot;SORT&quot; IS &apos;排序&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot;.&quot;PARENT_ID&quot; IS &apos;父级&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot;.&quot;LOGO&quot; IS &apos;logo&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot;.&quot;PIC&quot; IS &apos;分组图片&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot;.&quot;STATUS&quot; IS &apos;状态（0启用，1禁用）&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot;.&quot;CREATE_TIME&quot; IS &apos;添加时间&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot;.&quot;UPDATE_TIME&quot; IS &apos;更新时间&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot;.&quot;SEO_TITLE&quot; IS &apos;seo标题&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot;.&quot;SEO_KEYWORD&quot; IS &apos;seo关键词&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot;.&quot;SEO_DESC&quot; IS &apos;seo描述&apos;;
+
+-- ----------------------------
+-- Indexes structure for table PC_RECOMMEND_GROUP
+-- ----------------------------
+
+-- ----------------------------
+-- Checks structure for table PC_RECOMMEND_GROUP
+-- ----------------------------
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot; ADD CHECK (&quot;ID&quot; IS NOT NULL);
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot; ADD CHECK (&quot;NAME&quot; IS NOT NULL);
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot; ADD CHECK (&quot;ID&quot; IS NOT NULL);
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot; ADD CHECK (&quot;NAME&quot; IS NOT NULL);
+
+-- ----------------------------
+-- Primary Key structure for table PC_RECOMMEND_GROUP
+-- ----------------------------
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_RECOMMEND_GROUP&quot; ADD PRIMARY KEY (&quot;ID&quot;);
+
+
+CREATE TABLE &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot; (
+&quot;ID&quot; VARCHAR2(16 BYTE) NOT NULL ,
+&quot;GROUP_ID&quot; VARCHAR2(16 BYTE) NOT NULL ,
+&quot;PRODUCT_ID&quot; VARCHAR2(16 BYTE) NOT NULL ,
+&quot;STATUS&quot; VARCHAR2(4 BYTE) DEFAULT 0  NULL ,
+&quot;CREATE_TIME&quot; VARCHAR2(11 BYTE) DEFAULT 0  NULL ,
+&quot;UPDATE_TIME&quot; VARCHAR2(11 BYTE) DEFAULT 0  NULL ,
+&quot;IS_TOP&quot; VARCHAR2(4 BYTE) DEFAULT 0  NULL ,
+&quot;SORT&quot; NUMBER(10) DEFAULT 1  NULL ,
+&quot;GROUP_NAME&quot; VARCHAR2(100 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;GROUP_URL&quot; VARCHAR2(1000 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;GROUP_DESC&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL 
+)
+LOGGING
+NOCOMPRESS
+NOCACHE
+
+;
+COMMENT ON TABLE &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot; IS &apos;分组产品关系表&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot;.&quot;ID&quot; IS &apos;表ID&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot;.&quot;GROUP_ID&quot; IS &apos;分组ID&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot;.&quot;PRODUCT_ID&quot; IS &apos;产品ID&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot;.&quot;STATUS&quot; IS &apos;状态(0启用，1禁用)&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot;.&quot;CREATE_TIME&quot; IS &apos;添加时间&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot;.&quot;UPDATE_TIME&quot; IS &apos;更新时间&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot;.&quot;IS_TOP&quot; IS &apos;置顶&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot;.&quot;SORT&quot; IS &apos;排序&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot;.&quot;GROUP_NAME&quot; IS &apos;关联组里产品名称&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot;.&quot;GROUP_URL&quot; IS &apos;关联组里产品URL&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot;.&quot;GROUP_DESC&quot; IS &apos;关联组里产品描述&apos;;
+
+-- ----------------------------
+-- Indexes structure for table PC_GROUP_PRODUCT
+-- ----------------------------
+
+-- ----------------------------
+-- Checks structure for table PC_GROUP_PRODUCT
+-- ----------------------------
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot; ADD CHECK (&quot;ID&quot; IS NOT NULL);
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot; ADD CHECK (&quot;GROUP_ID&quot; IS NOT NULL);
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot; ADD CHECK (&quot;PRODUCT_ID&quot; IS NOT NULL);
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot; ADD CHECK (&quot;ID&quot; IS NOT NULL);
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot; ADD CHECK (&quot;GROUP_ID&quot; IS NOT NULL);
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot; ADD CHECK (&quot;PRODUCT_ID&quot; IS NOT NULL);
+
+-- ----------------------------
+-- Primary Key structure for table PC_GROUP_PRODUCT
+-- ----------------------------
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_GROUP_PRODUCT&quot; ADD PRIMARY KEY (&quot;ID&quot;);
+
+CREATE TABLE &quot;PA18NEWDATA&quot;.&quot;PC_CONFIG&quot; (
+&quot;ID&quot; VARCHAR2(35 BYTE) NOT NULL ,
+&quot;NAME&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;CODE&quot; VARCHAR2(255 BYTE) DEFAULT NULL  NULL ,
+&quot;TYPE&quot; VARCHAR2(255 BYTE) DEFAULT &apos;&apos;  NULL ,
+&quot;CREATE_TIME&quot; VARCHAR2(11 BYTE) DEFAULT 0  NULL ,
+&quot;UPDATE_TIME&quot; VARCHAR2(11 BYTE) DEFAULT 0  NULL ,
+&quot;STATUS&quot; VARCHAR2(4 BYTE) DEFAULT 0  NULL 
+)
+LOGGING
+NOCOMPRESS
+NOCACHE
+
+;
+COMMENT ON TABLE &quot;PA18NEWDATA&quot;.&quot;PC_CONFIG&quot; IS &apos;PC配置表&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CONFIG&quot;.&quot;ID&quot; IS &apos;表ID&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CONFIG&quot;.&quot;NAME&quot; IS &apos;名称&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CONFIG&quot;.&quot;CODE&quot; IS &apos;标识&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CONFIG&quot;.&quot;TYPE&quot; IS &apos;类型&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CONFIG&quot;.&quot;CREATE_TIME&quot; IS &apos;添加时间&apos;;
+COMMENT ON COLUMN &quot;PA18NEWDATA&quot;.&quot;PC_CONFIG&quot;.&quot;UPDATE_TIME&quot; IS &apos;更新时间&apos;;
+
+-- ----------------------------
+-- Indexes structure for table PC_CONFIG
+-- ----------------------------
+
+-- ----------------------------
+-- Checks structure for table PC_CONFIG
+-- ----------------------------
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_CONFIG&quot; ADD CHECK (&quot;ID&quot; IS NOT NULL);
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_CONFIG&quot; ADD CHECK (&quot;ID&quot; IS NOT NULL);
+
+-- ----------------------------
+-- Primary Key structure for table PC_CONFIG
+-- ----------------------------
+ALTER TABLE &quot;PA18NEWDATA&quot;.&quot;PC_CONFIG&quot; ADD PRIMARY KEY (&quot;ID&quot;);
+</code></pre><h2 id="2-相关的后台设计代码"><a href="#2-相关的后台设计代码" class="headerlink" title="2.相关的后台设计代码"></a>2.相关的后台设计代码</h2><h3 id="1-产品的增删改查以及列表页"><a href="#1-产品的增删改查以及列表页" class="headerlink" title="1.产品的增删改查以及列表页"></a>1.产品的增删改查以及列表页</h3><h4 id="1-C层代码"><a href="#1-C层代码" class="headerlink" title="1.C层代码"></a>1.C层代码</h4><pre><code>&lt;?php
+defined(&apos;BASEPATH&apos;) OR exit(&apos;No direct script access allowed&apos;);
+
+/**
+* PC产品控制器
+* @author ZHAOYANG732
+* @date 2018/3/22
+*/
+class PcProduct extends MY_Pc_Controller {
+   public function __construct() {
+       parent::__construct();
+
+       $this-&gt;load-&gt;model(&apos;pc/Pc_product_model&apos;, &apos;product&apos;);
+       $this-&gt;load-&gt;model(&apos;pc/Pc_category_model&apos;, &apos;pc_category&apos;);
+   }
+
+   /**
+    * 列表
+    */
+   public function index() {
+       //当前第几页
+       $cur_page = intval($this-&gt;input-&gt;get(&apos;per_page&apos;));
+       $cur_page = $cur_page &lt; 1 ? 1 : $cur_page;
+
+       //每页的显示条数
+       $page_size = 10;
+       $where     = &apos; 1=1&apos;;
+       $where_str = &apos;_iframe=1&apos;;
+
+       if (isset($_GET[&apos;status&apos;]) &amp;&amp; !empty($_GET[&apos;status&apos;])) {
+           $status    = intval(trim($_GET[&apos;status&apos;])) - 1;
+           $where     .= &apos; AND STATUS = &apos; . $status;
+           $where_str .= &apos;&amp;status=&apos; . $_GET[&apos;status&apos;];
+       }
+       if (isset($_GET[&apos;cate_id&apos;]) &amp;&amp; !empty($_GET[&apos;cate_id&apos;])) {
+           $cate_id   = $this-&gt;_replaceParamVal($_GET[&apos;cate_id&apos;]);
+           $where     .= &apos; AND CATEGORY_ID = \&apos;&apos; . $cate_id . &apos;\&apos;&apos;;
+           $where_str .= &apos;&amp;cate_id=&apos; . $_GET[&apos;cate_id&apos;];
+       }
+       if (isset($_GET[&apos;app_search_input&apos;]) &amp;&amp; !empty($_GET[&apos;app_search_input&apos;])) {
+           $where     .= &apos; AND NAME LIKE \&apos;%&apos; . $this-&gt;_replaceParamVal($_GET[&apos;app_search_input&apos;]) . &apos;%\&apos;&apos;;
+           $where_str .= &apos;&amp;app_search_input=&apos; . $_GET[&apos;app_search_input&apos;];
+       }
+
+       //图片链接
+       $pic_url = $GLOBALS[&apos;CHNAPP_UPLOAD_URL&apos;];
+       $this-&gt;assign(&apos;pic_url&apos;, $pic_url);
+
+       $count = $this-&gt;product-&gt;get_count($where);
+
+       $base_url = uri_string();
+       if (strpos(uri_string(), &apos;?&apos;) !== FALSE) {
+           $base_url .= &apos;&amp;&apos; . $where_str;
+       } else {
+           $base_url .= &apos;?&apos; . $where_str;
+       }
+       //显示分页效果
+       $page_string = $this-&gt;pagination($base_url, $count, $cur_page, $page_size);
+       $this-&gt;assign(&apos;page_string&apos;, $page_string);
+       //默认出10条数据
+       $list = $this-&gt;product-&gt;get_list($where, $page_string[&apos;offset&apos;], $page_size);
+       foreach ($list as &amp;$item) {
+           if (empty($item[&apos;PRIVATE_ATTR&apos;])) {
+               continue;
+           }
+           $channels = [];
+           foreach (json_decode($item[&apos;PRIVATE_ATTR&apos;], true) as $name =&gt; $url) {
+               $channels[] = $name . &apos;: &apos; . $url;
+           }
+           $item[&apos;PRIVATE_ATTR&apos;] = implode(&apos;;&apos;, $channels);
+       }
+
+       $ids       = array_column($this-&gt;product-&gt;get_cate_id(), &apos;CATEGORY_ID&apos;);
+       $cate_data = $this-&gt;pc_category-&gt;get_Cate_by_id($ids);
+       $this-&gt;assign(&apos;cate_data&apos;, $cate_data);
+       $this-&gt;assign(&apos;data_list&apos;, array(
+           &apos;list&apos;  =&gt; $list,
+           &apos;count&apos; =&gt; $count
+       ));
+       $this-&gt;display(&apos;pc/pc_product/index.html&apos;);
+   }
+
+   /**
+    * 添加产品
+    */
+   public function add() {
+       $this-&gt;get_config_list(&apos;template&apos;);
+       $pc_category = $this-&gt;pc_category-&gt;getCategory();
+       $this-&gt;assign(&apos;pc_category&apos;, $pc_category);
+       $this-&gt;display(&apos;pc/pc_product/add.html&apos;);
+   }
+
+   /**
+    * 添加PC产品逻辑
+    */
+   public function doAdd() {
+       $name = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;name&apos;)));
+       if (empty($name)) $this-&gt;output(EXIT_ERROR, &apos;名称不能为空或含有非法字符！&apos;);
+
+       $name_label = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;name_label&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;name_label&apos;)) &amp;&amp; empty($name_label)) {
+           $this-&gt;output(EXIT_ERROR, &apos;小标签不能含有非法字符！&apos;);
+       }
+       $company = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;company&apos;)));
+
+       $type = intval(trim($this-&gt;input-&gt;post(&apos;type&apos;)));
+       $type = empty($type) ? 0 : $type - 1;
+
+       $url = $this-&gt;_replaceParamVal($this-&gt;input-&gt;post(&apos;url&apos;));
+       if (!empty($url) &amp;&amp; strlen($url) &gt; 900) {
+           $this-&gt;output(EXIT_ERROR, &apos;URL太长！&apos;);
+       }
+
+       $category_id = $this-&gt;_replaceParamVal($this-&gt;input-&gt;post(&apos;category_id&apos;));
+       if (empty($category_id)) $this-&gt;output(EXIT_ERROR, &apos;分类不能为空！&apos;);
+
+       $price_desc = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;price_desc&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;price_desc&apos;)) &amp;&amp; empty($price_desc)) {
+           $this-&gt;output(EXIT_ERROR, &apos;价格描述不能含有非法字符！&apos;);
+       }
+       $price_desc_spec = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;price_desc_spec&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;price_desc_spec&apos;)) &amp;&amp; empty($price_desc_spec)) {
+           $this-&gt;output(EXIT_ERROR, &apos;价格描述特殊处理词不能含有非法字符！&apos;);
+       }
+
+       $rate = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;rate&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;rate&apos;)) &amp;&amp; empty($rate)) {
+           $this-&gt;output(EXIT_ERROR, &apos;比率不能含有非法字符！&apos;);
+       }
+       $rate_spec = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;rate_spec&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;rate_spec&apos;)) &amp;&amp; empty($rate_spec)) {
+           $this-&gt;output(EXIT_ERROR, &apos;比率特殊处理词不能含有非法字符！&apos;);
+       }
+
+       $term_limit = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;term_limit&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;term_limit&apos;)) &amp;&amp; empty($term_limit)) {
+           $this-&gt;output(EXIT_ERROR, &apos;期限不能含有非法字符！&apos;);
+       }
+       $term_limit_spec = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;term_limit_spec&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;term_limit_spec&apos;)) &amp;&amp; empty($term_limit_spec)) {
+           $this-&gt;output(EXIT_ERROR, &apos;期限特殊处理词不能含有非法字符！&apos;);
+       }
+
+       $number_desc = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;number_desc&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;number_desc&apos;)) &amp;&amp; empty($number_desc)) {
+           $this-&gt;output(EXIT_ERROR, &apos;数量描述不能含有非法字符！&apos;);
+       }
+       $number_desc_spec = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;number_desc_spec&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;number_desc_spec&apos;)) &amp;&amp; empty($number_desc_spec)) {
+           $this-&gt;output(EXIT_ERROR, &apos;数量描述特殊处理词不能含有非法字符！&apos;);
+       }
+
+       $short_desc = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;short_desc&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;short_desc&apos;)) &amp;&amp; empty($short_desc)) {
+           $this-&gt;output(EXIT_ERROR, &apos;简短描述不能含有非法字符！&apos;);
+       }
+       $short_desc_spec = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;short_desc_spec&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;short_desc_spec&apos;)) &amp;&amp; empty($short_desc_spec)) {
+           $this-&gt;output(EXIT_ERROR, &apos;简短描述特殊处理词不能含有非法字符！&apos;);
+       }
+       $desc = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;desc&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;desc&apos;)) &amp;&amp; empty($desc)) {
+           $this-&gt;output(EXIT_ERROR, &apos;描述不能含有非法字符！&apos;);
+       }
+       $desc_spec = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;desc_spec&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;desc_spec&apos;)) &amp;&amp; empty($desc_spec)) {
+           $this-&gt;output(EXIT_ERROR, &apos;描述特殊处理词不能含有非法字符！&apos;);
+       }
+
+       $is_show     = intval(trim($this-&gt;input-&gt;post(&apos;is_show&apos;)));
+       $is_show     = empty($is_show) ? 0 : $is_show - 1;
+       $button_text = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;button_text&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;button_text&apos;)) &amp;&amp; empty($button_text)) {
+           $this-&gt;output(EXIT_ERROR, &apos;按钮文本不能含有非法字符！&apos;);
+       }
+       $sort = intval(trim($this-&gt;input-&gt;post(&apos;sort&apos;)));
+
+       $pic = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;pic&apos;)));
+       if (empty($pic)) $this-&gt;output(EXIT_ERROR, &apos;图片不能为空！&apos;);
+
+       $middle_pic = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;middle_pic&apos;)));
+       if (empty($middle_pic)) $this-&gt;output(EXIT_ERROR, &apos;中图不能为空！&apos;);
+
+       $seo_title   = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;seo_title&apos;)));
+       $seo_desc    = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;seo_desc&apos;)));
+       $seo_keyword = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;seo_keyword&apos;)));
+
+       $data = [
+           &apos;NAME&apos;             =&gt; $name,
+           &apos;NAME_LABEL&apos;       =&gt; $name_label,
+           &apos;COMPANY&apos;          =&gt; $company,
+           &apos;TYPE&apos;             =&gt; $type,
+           &apos;URL&apos;              =&gt; $url,
+           &apos;CATEGORY_ID&apos;      =&gt; $category_id,
+           &apos;PRICE_DESC&apos;       =&gt; $price_desc,
+           &apos;PRICE_DESC_SPEC&apos;  =&gt; $price_desc_spec,
+           &apos;RATE&apos;             =&gt; $rate,
+           &apos;RATE_SPEC&apos;        =&gt; $rate_spec,
+           &apos;TERM_LIMIT&apos;       =&gt; $term_limit,
+           &apos;TERM_LIMIT_SPEC&apos;  =&gt; $term_limit_spec,
+           &apos;NUMBER_DESC&apos;      =&gt; $number_desc,
+           &apos;NUMBER_DESC_SPEC&apos; =&gt; $number_desc_spec,
+           &apos;SHORT_DESC&apos;       =&gt; $short_desc,
+           &apos;SHORT_DESC_SPEC&apos;  =&gt; $short_desc_spec,
+           &apos;DESC&apos;             =&gt; $desc,
+           &apos;DESC_SPEC&apos;        =&gt; $desc_spec,
+           &apos;IS_SHOW&apos;          =&gt; $is_show,
+           &apos;BUTTON_TEXT&apos;      =&gt; $button_text,
+           &apos;SORT&apos;             =&gt; $sort,
+           &apos;PIC&apos;              =&gt; $pic,
+           &apos;MIDDLE_PIC&apos;       =&gt; $middle_pic,
+           &apos;SEO_TITLE&apos;        =&gt; $seo_title,
+           &apos;SEO_DESC&apos;         =&gt; $seo_desc,
+           &apos;SEO_KEYWORD&apos;      =&gt; $seo_keyword
+       ];
+
+       $result = $this-&gt;product-&gt;add_product($data);
+       if ($result == TRUE) {
+           $this-&gt;output(EXIT_SUCCESS, &apos;添加成功！&apos;);
+       }
+       $this-&gt;output(EXIT_ERROR, &apos;添加失败！&apos;);
+   }
+
+   /**
+    * 编辑页
+    */
+   public function edit() {
+       $id = $this-&gt;_replaceParamVal($this-&gt;input-&gt;get(&apos;code&apos;));
+       if (!$id) {
+           //跳列表页
+           redirect(site_url(&apos;/pc/PcProduct&apos;));
+       }
+       $detail = $this-&gt;product-&gt;get_info_by_id($id);
+       if (!$detail) {
+           //跳列表页
+           redirect(site_url(&apos;/pc/PcProduct&apos;));
+       }
+       $detail[&apos;PIC_URL&apos;]        = empty($detail[&apos;PIC&apos;]) ? &apos;&apos; : $GLOBALS[&apos;CHNAPP_UPLOAD_URL&apos;] . $detail[&apos;PIC&apos;];
+       $detail[&apos;MIDDLE_PIC_URL&apos;] = !empty($detail[&apos;MIDDLE_PIC&apos;]) ? $GLOBALS[&apos;CHNAPP_UPLOAD_URL&apos;] . $detail[&apos;MIDDLE_PIC&apos;] : &apos;&apos;;
+
+       $pc_category = $this-&gt;pc_category-&gt;getCategory();
+       $this-&gt;assign(&apos;pc_category&apos;, $pc_category);
+       $this-&gt;assign(&apos;detail&apos;, $detail);
+       $this-&gt;display(&apos;pc/pc_product/edit.html&apos;);
+   }
+
+   /**
+    * 写入编辑的内容
+    */
+   public function doEdit() {
+       $id = $this-&gt;_replaceParamVal($this-&gt;input-&gt;post(&apos;code&apos;));
+       if (empty($id)) $this-&gt;output(EXIT_ERROR, &apos;请求失败！&apos;);
+
+       $detail = $this-&gt;product-&gt;get_info_by_id($id);
+       if (empty($detail)) $this-&gt;output(EXIT_ERROR, &apos;数据不存在！&apos;);
+
+       $data = [];
+       $name = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;name&apos;)));
+       if (empty($name)) $this-&gt;output(EXIT_ERROR, &apos;名称不能为空或含有非法字符！&apos;);
+       if ($detail[&apos;NAME&apos;] != $name) {
+           $data[&apos;NAME&apos;] = $name;
+       }
+       $name_label = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;name_label&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;name_label&apos;)) &amp;&amp; empty($name_label)) {
+           $this-&gt;output(EXIT_ERROR, &apos;小标签不能含有非法字符！&apos;);
+       }
+       if ($detail[&apos;NAME_LABEL&apos;] != $name_label) {
+           $data[&apos;NAME_LABEL&apos;] = $name_label;
+       }
+
+       $company = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;company&apos;)));
+       if (empty($company)) $this-&gt;output(EXIT_ERROR, &apos;公司不能为空或含有非法字符！&apos;);
+       if ($detail[&apos;COMPANY&apos;] != $company) {
+           $data[&apos;COMPANY&apos;] = $company;
+       }
+
+       $type = intval(trim($this-&gt;input-&gt;post(&apos;type&apos;)));
+       if ($type &gt; 0) {
+           $type = $type - 1;
+           if ($detail[&apos;TYPE&apos;] != $type) {
+               $data[&apos;TYPE&apos;] = $type;
+           }
+       }
+
+       $url = $this-&gt;_replaceParamVal($this-&gt;input-&gt;post(&apos;url&apos;));
+       if (!empty($url) &amp;&amp; strlen($url) &gt; 900) {
+           $this-&gt;output(EXIT_ERROR, &apos;URL太长！&apos;);
+       }
+       if ($detail[&apos;URL&apos;] != $url) {
+           $data[&apos;URL&apos;] = $url;
+       }
+
+       $category_id = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;category_id&apos;)));
+       if ($detail[&apos;CATEGORY_ID&apos;] != $category_id) {
+           $data[&apos;CATEGORY_ID&apos;] = $category_id;
+       }
+
+       $price_desc = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;price_desc&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;price_desc&apos;)) &amp;&amp; empty($price_desc)) {
+           $this-&gt;output(EXIT_ERROR, &apos;价格描述不能含有非法字符！&apos;);
+       }
+       if ($detail[&apos;PRICE_DESC&apos;] != $price_desc) {
+           $data[&apos;PRICE_DESC&apos;] = $price_desc;
+       }
+       $price_desc_spec = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;price_desc_spec&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;price_desc_spec&apos;)) &amp;&amp; empty($price_desc_spec)) {
+           $this-&gt;output(EXIT_ERROR, &apos;价格描述特殊处理词不能含有非法字符！&apos;);
+       }
+       if ($detail[&apos;PRICE_DESC_SPEC&apos;] != $price_desc_spec) {
+           $data[&apos;PRICE_DESC_SPEC&apos;] = $price_desc_spec;
+       }
+
+       $rate = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;rate&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;rate&apos;)) &amp;&amp; empty($rate)) {
+           $this-&gt;output(EXIT_ERROR, &apos;比率不能含有非法字符！&apos;);
+       }
+       if ($detail[&apos;RATE&apos;] != $rate) {
+           $data[&apos;RATE&apos;] = $rate;
+       }
+       $rate_spec = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;rate_spec&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;rate_spec&apos;)) &amp;&amp; empty($rate_spec)) {
+           $this-&gt;output(EXIT_ERROR, &apos;比率特殊处理词不能含有非法字符！&apos;);
+       }
+       if ($detail[&apos;RATE_SPEC&apos;] != $rate_spec) {
+           $data[&apos;RATE_SPEC&apos;] = $rate_spec;
+       }
+
+       $term_limit = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;term_limit&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;term_limit&apos;)) &amp;&amp; empty($term_limit)) {
+           $this-&gt;output(EXIT_ERROR, &apos;期限不能含有非法字符！&apos;);
+       }
+       if ($detail[&apos;TERM_LIMIT&apos;] != $term_limit) {
+           $data[&apos;TERM_LIMIT&apos;] = $term_limit;
+       }
+       $term_limit_spec = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;term_limit_spec&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;term_limit_spec&apos;)) &amp;&amp; empty($term_limit_spec)) {
+           $this-&gt;output(EXIT_ERROR, &apos;期限特殊处理词不能含有非法字符！&apos;);
+       }
+       if ($detail[&apos;TERM_LIMIT_SPEC&apos;] != $term_limit_spec) {
+           $data[&apos;TERM_LIMIT_SPEC&apos;] = $term_limit_spec;
+       }
+
+       $number_desc = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;number_desc&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;number_desc&apos;)) &amp;&amp; empty($number_desc)) {
+           $this-&gt;output(EXIT_ERROR, &apos;数量描述不能含有非法字符！&apos;);
+       }
+       if ($detail[&apos;NUMBER_DESC&apos;] != $number_desc) {
+           $data[&apos;NUMBER_DESC&apos;] = $number_desc;
+       }
+       $number_desc_spec = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;number_desc_spec&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;number_desc_spec&apos;)) &amp;&amp; empty($number_desc_spec)) {
+           $this-&gt;output(EXIT_ERROR, &apos;数量描述特殊处理词不能含有非法字符！&apos;);
+       }
+       if ($detail[&apos;NUMBER_DESC_SPEC&apos;] != $number_desc_spec) {
+           $data[&apos;NUMBER_DESC_SPEC&apos;] = $number_desc_spec;
+       }
+
+       $short_desc = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;short_desc&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;short_desc&apos;)) &amp;&amp; empty($short_desc)) {
+           $this-&gt;output(EXIT_ERROR, &apos;简短描述不能含有非法字符！&apos;);
+       }
+       if ($detail[&apos;SHORT_DESC&apos;] != $short_desc) {
+           $data[&apos;SHORT_DESC&apos;] = $short_desc;
+       }
+       $short_desc_spec = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;short_desc_spec&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;short_desc_spec&apos;)) &amp;&amp; empty($short_desc_spec)) {
+           $this-&gt;output(EXIT_ERROR, &apos;简短描述特殊处理词不能含有非法字符！&apos;);
+       }
+       if ($detail[&apos;SHORT_DESC_SPEC&apos;] != $short_desc_spec) {
+           $data[&apos;SHORT_DESC_SPEC&apos;] = $short_desc_spec;
+       }
+       $desc = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;desc&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;desc&apos;)) &amp;&amp; empty($desc)) {
+           $this-&gt;output(EXIT_ERROR, &apos;描述不能含有非法字符！&apos;);
+       }
+       if ($detail[&apos;DESC&apos;] != $desc) {
+           $data[&apos;DESC&apos;] = $desc;
+       }
+       $desc_spec = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;desc_spec&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;desc_spec&apos;)) &amp;&amp; empty($desc_spec)) {
+           $this-&gt;output(EXIT_ERROR, &apos;描述特殊处理词不能含有非法字符！&apos;);
+       }
+       if ($detail[&apos;DESC_SPEC&apos;] != $desc) {
+           $data[&apos;DESC_SPEC&apos;] = $desc;
+       }
+
+       $is_show = intval(trim($this-&gt;input-&gt;post(&apos;is_show&apos;)));
+       if ($is_show &gt; 0) {
+           $is_show = $is_show - 1;
+           if ($detail[&apos;IS_SHOW&apos;] != $is_show) {
+               $data[&apos;IS_SHOW&apos;] = $is_show;
+           }
+       }
+
+       $button_text = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;button_text&apos;)));
+       if (!empty($this-&gt;input-&gt;post(&apos;button_text&apos;)) &amp;&amp; empty($button_text)) {
+           $this-&gt;output(EXIT_ERROR, &apos;按钮文本不能含有非法字符！&apos;);
+       }
+       if ($detail[&apos;BUTTON_TEXT&apos;] != $button_text) {
+           $data[&apos;BUTTON_TEXT&apos;] = $button_text;
+       }
+
+       $sort = intval(trim($this-&gt;input-&gt;post(&apos;sort&apos;)));
+       if ($detail[&apos;SORT&apos;] != $sort) {
+           $data[&apos;SORT&apos;] = $sort;
+       }
+
+       $pic = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;pic&apos;)));
+       if ($detail[&apos;PIC&apos;] != $pic) {
+           $data[&apos;PIC&apos;] = $pic;
+       }
+
+       $middle_pic = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;middle_pic&apos;)));
+       if ($detail[&apos;MIDDLE_PIC&apos;] != $middle_pic) {
+           $data[&apos;MIDDLE_PIC&apos;] = $middle_pic;
+       }
+
+       $seo_title = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;seo_title&apos;)));
+       if ($detail[&apos;SEO_TITLE&apos;] != $seo_title) {
+           $data[&apos;SEO_TITLE&apos;] = $seo_title;
+       }
+
+       $seo_keyword = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;seo_keyword&apos;)));
+       if ($detail[&apos;SEO_KEYWORD&apos;] != $seo_keyword) {
+           $data[&apos;SEO_KEYWORD&apos;] = $seo_keyword;
+       }
+
+       $seo_desc = $this-&gt;_replaceParamVal(trim($this-&gt;input-&gt;post(&apos;seo_desc&apos;)));
+       if ($detail[&apos;SEO_DESC&apos;] != $seo_desc) {
+           $data[&apos;SEO_DESC&apos;] = $seo_desc;
+       }
+
+       if (empty($data)) {
+           $this-&gt;output(EXIT_ERROR, &apos;无数据更新！&apos;);
+       }
+
+       $result = $this-&gt;product-&gt;update_product([&apos;ID&apos; =&gt; $id], $data);
+       if ($result == TRUE) {
+           $this-&gt;output(EXIT_SUCCESS, &apos;修改成功！&apos;);
+       }
+       $this-&gt;output(EXIT_ERROR, &apos;修改失败！&apos;);
+   }
+
+   /**
+    * 禁用
+    */
+   public function forbid() {
+       $id = $this-&gt;_replaceParamVal($this-&gt;input-&gt;post(&apos;code&apos;));
+       if (empty($id)) $this-&gt;output(EXIT_ERROR, &apos;请求失败！&apos;);
+
+       $detail = $this-&gt;product-&gt;get_info_by_id($id);
+       if (empty($detail)) $this-&gt;output(EXIT_ERROR, &apos;数据不存在！&apos;);
+
+       $result = $this-&gt;product-&gt;update_product([&apos;ID&apos; =&gt; $id], [&apos;STATUS&apos; =&gt; 1]);
+       if ($result &gt; 0) {
+           $this-&gt;output(EXIT_SUCCESS, &apos;禁用成功！&apos;);
+       }
+       $this-&gt;output(EXIT_ERROR, &apos;禁用失败！&apos;);
+   }
+
+   /**
+    * 启用
+    */
+   public function recover() {
+       $id = $this-&gt;_replaceParamVal($this-&gt;input-&gt;post(&apos;code&apos;));
+       if (empty($id)) $this-&gt;output(EXIT_ERROR, &apos;请求失败！&apos;);
+
+       $detail = $this-&gt;product-&gt;get_info_by_id($id);
+       if (empty($detail)) $this-&gt;output(EXIT_ERROR, &apos;数据不存在！&apos;);
+
+       $result = $this-&gt;product-&gt;update_product([&apos;ID&apos; =&gt; $id], [&apos;STATUS&apos; =&gt; 0]);
+       if ($result &gt; 0) {
+           $this-&gt;output(EXIT_SUCCESS, &apos;启用成功！&apos;);
+       }
+       $this-&gt;output(EXIT_ERROR, &apos;启用失败！&apos;);
+   }
+
+   /**
+    * 删除
+    * STATUS = 2代表删除（逻辑上）
+    */
+   public function delete() {
+       $id = $this-&gt;_replaceParamVal($this-&gt;input-&gt;post(&apos;code&apos;));
+       if (empty($id)) $this-&gt;output(EXIT_ERROR, &apos;请求失败！&apos;);
+
+       $detail = $this-&gt;product-&gt;get_info_by_id($id);
+       if (empty($detail)) $this-&gt;output(EXIT_ERROR, &apos;数据不存在！&apos;);
+
+       $result = $this-&gt;product-&gt;update_product([&apos;ID&apos; =&gt; $id], [&apos;STATUS&apos; =&gt; 2]);
+       if ($result &gt; 0) {
+           $this-&gt;output(EXIT_SUCCESS, &apos;删除成功！&apos;);
+       }
+       $this-&gt;output(EXIT_ERROR, &apos;删除失败！&apos;);
+   }
+}
+</code></pre><h4 id="2-V层代码"><a href="#2-V层代码" class="headerlink" title="2.V层代码"></a>2.V层代码</h4><p>index</p>
+<pre><code>{{include file="../../common/header.html"}}
+&lt;link rel=&quot;stylesheet&quot; href=&quot;{{site_url('/assets/pc/css/index.css')}}&quot;&gt;
+&lt;div class=&quot;pcontainer&quot; style=&quot;width: 99%&quot;&gt;
+   &lt;div class=&quot;list_Info&quot; style=&quot;border: none&quot;&gt;
+       &lt;div class=&quot;list_Info_div&quot;&gt;
+           &lt;p class=&quot;list_Info_div_p1&quot;&gt;以下为全部的产品，请对其进行管理操作:&lt;/p&gt;
+           &lt;div class=&quot;linear&quot; style=&quot;&quot;&gt;&lt;/div&gt;
+           &lt;div class=&apos;list_input intel_search&apos;&gt;
+               &lt;span class=&quot;dropdown_span&quot;&gt;状态&lt;/span&gt;
+               &lt;select id=&quot;status&quot; class=&quot;dropdown&quot;&gt;
+                   &lt;option value=&quot;&quot;&gt;请选择状态&lt;/option&gt;
+                   &lt;option value=&quot;1&quot;&gt;启用&lt;/option&gt;
+                   &lt;option value=&quot;2&quot;&gt;禁用&lt;/option&gt;
+               &lt;/select&gt;
+           &lt;/div&gt;
+           &lt;div class=&apos;list_input intel_search&apos;&gt;
+               &lt;span class=&quot;dropdown_span&quot;&gt;分类&lt;/span&gt;
+               &lt;select id=&quot;cate_id&quot; class=&quot;dropdown&quot; data-settings=&apos;{&quot;cutOff&quot;: 9}&apos;&gt;
+                   &lt;option value=&quot;&quot;&gt;请选择分类&lt;/option&gt;
+                   {{if isset($cate_data)}}
+                   {{foreach from=$cate_data key=key item=item}}
+                   &lt;option value=&quot;{{$item.ID}}&quot;&gt;{{$item.NAME}}&lt;/option&gt;
+                   {{/foreach}}
+                   {{/if}}
+               &lt;/select&gt;
+           &lt;/div&gt;
+           &lt;div class=&apos;list_input intel_search&apos;&gt;
+               &lt;span style=&quot;margin-right: 10px;&quot;&gt;名称&lt;/span&gt;
+               &lt;input type=&quot;text&quot; style=&quot;padding-right:10px;height: 35px;float: none;&quot; id=&quot;app_search_input&quot; value=&quot;&quot; placeholder=&quot;请输入产品名称&quot; autocomplete=&quot;off&quot; /&gt;
+           &lt;/div&gt;
+           &lt;div class=&apos;list_input intel_search&apos;&gt;
+               &lt;button class=&apos;sure_btn must_btn copy_iframe&apos; id=&apos;app_search_button&apos;&gt;搜索&lt;/button&gt;
+           &lt;/div&gt;
+       &lt;/div&gt;
+       &lt;table class=&quot;table1&quot; cellspacing=&apos;0&apos;&gt;
+           &lt;caption class=&quot;tableTittle&quot;&gt;
+               &lt;p class=&quot;introduce&quot;&gt;&lt;span class=&apos;total_last&apos;&gt;&lt;/span&gt;共&lt;span class=&apos;total_math&apos;&gt;{{$data_list.count}}&lt;/span&gt;条数据&lt;/p&gt;
+           &lt;/caption&gt;
+           &lt;thead&gt;
+           &lt;tr&gt;
+               &lt;td style=&quot;width:5%;&quot;&gt;序号&lt;/td&gt;
+               &lt;td style=&quot;width:15%;&quot;&gt;产品ID&lt;/td&gt;
+               &lt;td style=&quot;width:10%;&quot;&gt;产品名称&lt;/td&gt;
+               &lt;td style=&quot;width:15%;&quot;&gt;链接&lt;/td&gt;
+               &lt;td style=&quot;width:15%;&quot;&gt;图片&lt;/td&gt;
+               &lt;td style=&quot;width:10%;&quot;&gt;创建时间&lt;/td&gt;
+               &lt;td style=&quot;width:5%;&quot;&gt;排序&lt;/td&gt;
+               &lt;td style=&quot;width:10%;&quot;&gt;状态&lt;/td&gt;
+               &lt;td style=&quot;width:15%;&quot;&gt;操作&lt;/td&gt;
+           &lt;/tr&gt;
+           &lt;/thead&gt;
+           &lt;tbody&gt;
+           {{if $data_list.list}}
+           {{foreach from=$data_list.list key=key item=item}}
+           &lt;tr&gt;
+               &lt;td&gt;{{$key+$page_string['offset']+1}}&lt;/td&gt;
+               &lt;td&gt;{{$item.ID}}&lt;/td&gt;
+               &lt;td&gt;{{$item.NAME}}&lt;/td&gt;
+               &lt;td&gt;{{$item.URL}}&lt;/td&gt;
+               &lt;td&gt;{{if $item.PIC neq ''}}&lt;img style=&quot;margin-top: 5px;&quot; src=&quot;{{$pic_url}}{{$item.PIC}}&quot; width=&quot;100&quot; height=&quot;60&quot; title=&quot;{{$pic_url}}{{$item.PIC}}&quot;&gt;{{/if}}&lt;/td&gt;
+               &lt;td&gt;{{date('Y-m-d H:i:s',$item.CREATE_TIME)}}&lt;/td&gt;
+               &lt;td&gt;{{$item.SORT}}&lt;/td&gt;
+               &lt;td&gt;{{if $item.STATUS eq '1'}}禁用{{else}}启用{{/if}}&lt;/td&gt;
+               &lt;td&gt;
+                   {{if $item.STATUS eq '1'}}
+                   &lt;a href=&quot;javascript:;&quot; class=&quot;recover&quot; data-id=&quot;{{$item.ID}}&quot; style=&quot;color:#FAA129&quot;&gt;启用&lt;/a&gt;&amp;nbsp;
+                   {{else}}
+                   &lt;a href=&quot;javascript:;&quot; class=&quot;forbid&quot; data-id=&quot;{{$item.ID}}&quot; style=&quot;color:#FAA129&quot;&gt;禁用&lt;/a&gt;&amp;nbsp;&amp;nbsp;
+                   {{/if}}
+                   &lt;a href=&quot;javascript:;&quot; data-href=&quot;/pc/PcProduct/edit?code={{$item.ID}}&quot; data-title=&quot;产品编辑&quot; style=&quot;color:#FAA129&quot; class=&quot;product_edit&quot;&gt;编辑&lt;/a&gt;&amp;nbsp;&amp;nbsp
+                   &lt;a href=&quot;javascript:;&quot; data-href=&quot;/pc/SecurityPlan?code={{$item.ID}}&quot; data-title=&quot;保障计划&quot; style=&quot;color:#FAA129&quot; class=&quot;product_edit&quot;&gt;保障计划&lt;/a&gt;&amp;nbsp;&amp;nbsp
+                   &lt;a href=&quot;javascript:;&quot; class=&quot;delete&quot; data-id=&quot;{{$item.ID}}&quot; style=&quot;color:#FAA129&quot;&gt;删除&lt;/a&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+               &lt;/td&gt;
+           &lt;/tr&gt;
+           {{/foreach}}
+           {{else}}
+           &lt;tr&gt;
+               &lt;td colspan=13&gt;无数据&lt;/td&gt;
+           &lt;/tr&gt;
+           {{/if}}
+           &lt;/tbody&gt;
+           &lt;tfoot&gt;
+           {{if $page_string.page_string}}
+           &lt;tr&gt;
+               &lt;td colspan=10&gt;
+                   &lt;div id=&quot;pageBox&quot;&gt;
+                       &lt;div class=&quot;pageSize&quot;&gt;&lt;/div&gt;
+                       &lt;div class=&quot;pageBox&quot;&gt;{{$page_string.page_string}}&lt;/div&gt;
+                   &lt;/div&gt;
+               &lt;/td&gt;
+           &lt;/tr&gt;
+           {{/if}}
+           &lt;/tfoot&gt;
+       &lt;/table&gt;
+   &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+{{include file="../../common/footer.html"}}
+&lt;script&gt;
+   var pc_product = {
+       // 初始化函数
+       init: function () {
+           // 初始化搜索条件
+           if (GET(&apos;app_search_input&apos;)) {
+               $(&apos;#app_search_input&apos;).val(decodeURIComponent(GET(&apos;app_search_input&apos;)));
+           }
+           if (GET(&apos;status&apos;)) {
+               $(&apos;#status&apos;).val(GET(&apos;status&apos;));
+           }
+           if (GET(&apos;cate_id&apos;)) {
+               $(&apos;#cate_id&apos;).val(GET(&apos;cate_id&apos;));
+           }
+           pc_product._click();
+           pc_product.click_search();
+       },
+       /**
+        * 各项点击效果
+        * @returns {undefined}
+        */
+       _click: function () {
+           $(&apos;.forbid&apos;).click(function () {
+               var id = $(this).data(&apos;id&apos;);
+               top.layer.confirm(&apos;您是否禁用该产品&apos;, {btn: [&apos;确定&apos;, &apos;取消&apos;], title: &apos;确认信息&apos;}, function () {
+                   Aweb.post(&apos;/pc/PcProduct/forbid&apos;, {&apos;code&apos;: id}, function (data) {
+                       if (data &amp;&amp; data.code == 0) {
+                           top.layer.msg(&apos;恭喜您，禁用成功&apos;, {time: 2000}, function () {
+                               location.reload(true);
+                           });
+                       } else {
+                           top.layer.alert(&apos;禁用失败!&apos;, {time: 1000}, function () {
+                               return false;
+                           });
+                       }
+                   });
+               });
+           });
+           $(&apos;.recover&apos;).click(function () {
+               var id = $(this).data(&apos;id&apos;);
+               top.layer.confirm(&apos;您是否启用该产品&apos;, {btn: [&apos;确定&apos;, &apos;取消&apos;], title: &apos;确认信息&apos;}, function () {
+                   Aweb.post(&apos;/pc/PcProduct/recover&apos;, {&apos;code&apos;: id}, function (data) {
+                       if (data &amp;&amp; data.code == 0) {
+                           top.layer.msg(&apos;恭喜您，启用成功&apos;, {time: 2000}, function () {
+                               location.reload(true);
+                           });
+                       } else {
+                           top.layer.alert(&apos;启用失败!&apos;, {time: 1000}, function () {
+                               return false;
+                           });
+                       }
+                   });
+               });
+           });
+           $(&apos;.delete&apos;).click(function () {
+               var id = $(this).data(&apos;id&apos;);
+               top.layer.confirm(&apos;您是否删除该产品&apos;, {btn: [&apos;确定&apos;, &apos;取消&apos;], title: &apos;确认信息&apos;}, function () {
+                   Aweb.post(&apos;/pc/PcProduct/delete&apos;, {&apos;code&apos;: id}, function (data) {
+                       if (data &amp;&amp; data.code == 0) {
+                           top.layer.msg(data.msg, {time: 2000}, function () {
+                               location.reload(true);
+                           });
+                       } else {
+                           top.layer.alert(data.msg, {time: 1000}, function () {
+                               return false;
+                           });
+                       }
+                   });
+               });
+           });
+
+       },
+       /**
+        * 搜索按钮
+        * @returns {undefined}
+        */
+       click_search: function () {
+           $(&apos;#app_search_button&apos;).click(function () {
+               var app_search_input = $.trim($(&apos;#app_search_input&apos;).val());
+               var status = $(&apos;#status&apos;).val();
+               var cate_id = $(&apos;#cate_id&apos;).val();
+               var where = {};
+               if (app_search_input) {
+                   where.app_search_input = encodeURIComponent(app_search_input);
+               }
+               if (status &gt; 0) {
+                   where.status = status;
+               }
+               if(cate_id){
+                   where.cate_id = cate_id;
+               }
+               var search_string = setQueryConfig(where);
+               Aweb.tab_click(&quot;/pc/PcProduct?&quot; + search_string, &apos;产品列表&apos;);
+           });
+       },
+       /**
+        * 搜索数据请求
+        * @returns {undefined}
+        */
+       post_data: function () {
+
+       }
+   };
+   pc_product.init();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>add</p>
+<pre><code>{{include file="../../common/header.html"}}
+&lt;link rel=&quot;stylesheet&quot; href=&quot;{{site_url('/assets/js/lib/layui/css/layui.css')}}&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;{{site_url('/assets/m/css/product/add.css')}}&quot;/&gt;
+&lt;style type=&quot;&quot;&gt;
+   .my-dropdown-class{
+       width:45.5%!important;
+       min-width:380px!important;
+       box-sizing: border-box;
+   }
+   ul&gt;li:nth-child(8) .my-dropdown-class{
+       width:100%!important;
+       height:36px;
+       line-height:36px;
+   }
+   .my-dropdown-class .selected{
+       display: inline-block;
+   }
+&lt;/style&gt;
+&lt;div class=&quot;m_container&quot; id=&quot;beforeunload&quot;&gt;
+   &lt;div class=&quot;m_manage&quot;&gt;
+       &lt;div class=&quot;m_left&quot;&gt;
+           &lt;ul&gt;
+               &lt;li&gt;
+                   &lt;span&gt;名称&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写名称，建议20个字以内&quot; id=&quot;name&quot; value=&quot;&quot; maxlength=&quot;20&quot;/&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;小标签&lt;/span&gt;
+                   &lt;input  class=&quot;inputbox&quot; placeholder=&quot;请填写小标签，建议5个字以内&quot; id=&quot;name_label&quot; value=&quot;&quot; maxlength=&quot;20&quot;&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;专业公司&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写专业公司，建议6个字或12个字符以内&quot; id=&quot;company&quot; value=&quot;&quot; maxlength=&quot;20&quot;/&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;类型&lt;/span&gt;
+                   &lt;select class=&quot;m_location&quot; id=&quot;type&quot;&gt;
+                       &lt;option value=&quot;&quot;&gt;请选择类型&lt;/option&gt;
+                       &lt;option value=&quot;1&quot;&gt;文本&lt;/option&gt;
+                       &lt;option value=&quot;2&quot;&gt;h5&lt;/option&gt;
+                       &lt;option value=&quot;3&quot;&gt;原生&lt;/option&gt;
+                   &lt;/select&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;链接或链接参数&lt;/span&gt;
+                   &lt;input class=&quot;m_rtinput  &quot; placeholder=&quot;请填写链接或链接参数&quot; id=&quot;url&quot; value=&quot;&quot; maxlength=&quot;1000&quot;/&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;分类&lt;/span&gt;
+                   &lt;select class=&quot;m_location&quot; id=&quot;pc_category&quot;&gt;
+                       &lt;option value=&quot;&quot;&gt;请选择分类&lt;/option&gt;
+                       {{if isset($pc_category)}}
+                       {{foreach from=$pc_category   key=key item=item}}
+                       &lt;option value=&quot;{{$item.id}}&quot;&gt;{{$item.name}}&lt;/option&gt;
+                       {{/foreach}}
+                       {{/if}}
+                   &lt;/select&gt;
+               &lt;/li&gt;
+               &lt;li style=&quot;position:relative&quot;&gt;
+                   &lt;span&gt;价格（或价格描述）&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写价格或价格描述，建议6个字或12个字符以内&quot; id=&quot;price_desc&quot; value=&quot;&quot; maxlength=&quot;20&quot;/&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;特殊处理词&lt;/span&gt;
+                   &lt;input  class=&quot;inputbox&quot;  placeholder=&quot;请填写价格描述里需要特殊处理的词，多个词用‘|’隔开&quot; id=&quot;price_desc_spec&quot; value=&quot;&quot; maxlength=&quot;20&quot;&gt;
+               &lt;/li&gt;
+               &lt;li style=&quot;position:relative&quot;&gt;
+                   &lt;span&gt;比率&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写比率，小数点后保留3位&quot; id=&quot;rate&quot; value=&quot;&quot; maxlength=&quot;15&quot;/&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;特殊处理词&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写价格描述里需要特殊处理的词，多个词用‘|’隔开&quot; id=&quot;rate_spec&quot; value=&quot;&quot; maxlength=&quot;20&quot;&gt;
+               &lt;/li&gt;
+               &lt;li style=&quot;position:relative&quot;&gt;
+                   &lt;span&gt;期限&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写期限，建议6个字以内&quot; id=&quot;term_limit&quot; value=&quot;&quot; maxlength=&quot;15&quot;&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;特殊处理词&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写价格描述里需要特殊处理的词，多个词用‘|’隔开&quot; id=&quot;term_limit_spec&quot; value=&quot;&quot; maxlength=&quot;20&quot;&gt;
+               &lt;/li&gt;
+               &lt;li style=&quot;position:relative&quot;&gt;
+                   &lt;span&gt;数量描述&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写数量描述，建议15个字符以内&quot; id=&quot;number_desc&quot; value=&quot;&quot; maxlength=&quot;15&quot;/&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;特殊处理词&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写价格描述里需要特殊处理的词，多个词用‘|’隔开&quot; id=&quot;number_desc_spec&quot; value=&quot;&quot; maxlength=&quot;20&quot;&gt;
+               &lt;/li&gt;
+               &lt;li style=&quot;position:relative&quot;&gt;
+                   &lt;span&gt;简短描述&lt;/span&gt;
+                   &lt;textarea class=&quot;inputbox&quot; placeholder=&quot;请填写简短描述，理财类8字以内，其余12字以内&quot; id=&quot;short_desc&quot; maxlength=&quot;30&quot;&gt;&lt;/textarea&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;特殊处理词&lt;/span&gt;
+                   &lt;textarea  class=&quot;inputbox&quot;  placeholder=&quot;请填写简短描述里需要特殊处理的词，多个词用‘|’隔开&quot;  id=&quot;short_desc_spec&quot; maxlength=&quot;30&quot;&gt;&lt;/textarea&gt;
+               &lt;/li&gt;
+               &lt;li style=&quot;position:relative&quot;&gt;
+                   &lt;span&gt;描述&lt;/span&gt;
+                   &lt;textarea class=&quot;inputbox&quot; placeholder=&quot;请填写描述，建议12字以内&quot; id=&quot;desc&quot; maxlength=&quot;30&quot;&gt;&lt;/textarea&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;特殊处理词&lt;/span&gt;
+                   &lt;textarea  class=&quot;inputbox&quot;  placeholder=&quot;请填写描述里需要特殊处理的词，多个词用‘|’隔开&quot;  id=&quot;desc_spec&quot; maxlength=&quot;30&quot;&gt;&lt;/textarea&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;是否显示按钮&lt;/span&gt;
+                   &lt;select class=&quot;inputbox  my-dropdown-class select&quot; id=&quot;is_show&quot;&gt;
+                       &lt;option value=&quot;1&quot;&gt;否&lt;/option&gt;
+                       &lt;option value=&quot;2&quot;&gt;是&lt;/option&gt;
+                   &lt;/select&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;按钮文本&lt;/span&gt;
+                   &lt;input  class=&quot;inputbox&quot; placeholder=&quot;请填写按钮文本，4个字以内&quot; id=&quot;button_text&quot; value=&quot;&quot; maxlength=&quot;20&quot;/&gt;
+               &lt;/li&gt;
+               &lt;li style=&quot;position:relative;&quot;&gt;
+                   &lt;span&gt;排序&lt;/span&gt;
+                   &lt;input  class=&quot;m_border placeholder&quot; id=&quot;sort&quot; name=&quot;SORT&quot; style=&apos;width: 120px;height: 35px;line-height: 35px;text-indent:15px&apos; placeholder=&quot;(请选择排序序号)&quot; type=&apos;number&apos; min=&apos;1&apos; oninput=&quot;if(value.length&gt;6)value=value.slice(0,6)&quot; value=&quot;1&quot;/&gt;
+               &lt;/li&gt;
+               &lt;li class=&quot;m_shangchuang&quot;&gt;
+                   &lt;span&gt;图片&lt;/span&gt;
+                   &lt;div&gt;
+                       &lt;em class=&quot;m_inputFillBox&quot;&gt;上传图片  &lt;input type=&quot;file&quot;  class=&quot;m_inputFill pic&quot; name=&apos;upload_img&apos;&gt;&lt;/em&gt;
+                       &lt;em&gt;支持扩展名: *.bmp、*.jpeg、*.png、 *.jpg、 *.gif, 文件上传大小请勿超过1M.&lt;/em&gt;
+                   &lt;/div&gt;
+                   &lt;div class=&quot;m_rtinput m_border m_fill&quot; style=&quot;&quot;&gt;
+                       &lt;input type=&quot;hidden&quot; id=&apos;pic&apos; value=&quot;&quot;/&gt;
+                       &lt;img id=&quot;product_pic&quot; src=&quot;&quot; /&gt;
+                       &lt;span class=&apos;m_delete pic_delete&apos;&gt;x&lt;/span&gt;
+                   &lt;/div&gt;
+               &lt;/li&gt;
+               &lt;li class=&quot;m_shangchuang&quot;&gt;
+                   &lt;span&gt;中图&lt;/span&gt;
+                   &lt;div&gt;
+                       &lt;em class=&quot;m_inputFillBox&quot;&gt;上传图片  &lt;input type=&quot;file&quot;  class=&quot;m_inputFill middle_pic&quot; name=&apos;upload_img&apos;&gt;&lt;/em&gt;
+                       &lt;em&gt;支持扩展名: *.bmp、*.jpeg、*.png、 *.jpg、 *.gif, 文件上传大小请勿超过1M.&lt;/em&gt;
+                   &lt;/div&gt;
+                   &lt;div class=&quot;m_rtinput m_border m_fill&quot; style=&quot;&quot;&gt;
+                       &lt;input type=&quot;hidden&quot; id=&apos;middle_pic&apos; value=&quot;&quot;/&gt;
+                       &lt;img id=&quot;product_middle_pic&quot; src=&quot;&quot; /&gt;
+                       &lt;span class=&apos;m_delete middle_pic_delete&apos;&gt;x&lt;/span&gt;
+                   &lt;/div&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;seo标题&lt;/span&gt;
+                   &lt;input class=&quot;m_rtinput &quot; placeholder=&quot;请填写seo标题&quot; maxlength=&quot;80&quot; id=&apos;seo_title&apos;  value=&quot;&quot;/&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;seo关键词&lt;/span&gt;
+                   &lt;input class=&quot;m_rtinput &quot; placeholder=&quot;请填写seo关键词&quot; maxlength=&quot;80&quot; id=&apos;seo_keyword&apos;  value=&quot;&quot;/&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;seo描述&lt;/span&gt;
+                   &lt;input class=&quot;m_rtinput &quot; placeholder=&quot;请填写seo描述&quot; maxlength=&quot;80&quot; id=&apos;seo_desc&apos;  value=&quot;&quot;/&gt;
+               &lt;/li&gt;
+               &lt;div class=&quot;linear&quot;&gt;&lt;/div&gt;
+               &lt;button class=&quot;m_button m_submit select_pingdao&quot;&gt;提交&lt;/button&gt;
+           &lt;/ul&gt;
+       &lt;/div&gt;
+       &lt;div style=&quot;clear:both&quot;&gt;&lt;/div&gt;
+   &lt;/div&gt;
+   &lt;div style=&quot;clear:both&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+{{include file="../../common/footer.html"}}
+&lt;script type=&quot;text/javascript&quot; src=&quot;{{site_url('/assets/js/lib/layui/layui.js')}}&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;{{site_url('/assets/pc/js/pc_product/add.js')}}&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>edit</p>
+<pre><code>{{include file="../../common/header.html"}}
+&lt;link rel=&quot;stylesheet&quot; href=&quot;{{site_url('/assets/js/lib/layui/css/layui.css')}}&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;{{site_url('/assets/m/css/product/add.css')}}&quot;/&gt;
+&lt;style type=&quot;&quot;&gt;
+   .my-dropdown-class{
+       width:45.5%!important;
+       min-width:380px!important;
+       box-sizing: border-box;
+   }
+   ul&gt;li:nth-child(8) .my-dropdown-class{
+       width:100%!important;
+       height:36px;
+       line-height:36px;
+   }
+   .my-dropdown-class .selected{
+       display: inline-block;
+   }
+&lt;/style&gt;
+&lt;div class=&quot;m_container&quot; id=&quot;beforeunload&quot;&gt;
+   &lt;div class=&quot;m_manage&quot;&gt;
+       &lt;div class=&quot;m_left&quot;&gt;
+           &lt;ul&gt;
+               &lt;input type=&quot;hidden&quot; value=&quot;{{$detail.ID}}&quot; id=&quot;id&quot; /&gt;
+               &lt;li&gt;
+                   &lt;span&gt;名称&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写名称，建议20个字以内&quot; id=&quot;name&quot; value=&quot;{{$detail.NAME}}&quot; maxlength=&quot;20&quot;/&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;小标签&lt;/span&gt;
+                   &lt;input  class=&quot;inputbox&quot; placeholder=&quot;请填写小标签，建议5个字以内&quot; id=&quot;name_label&quot; value=&quot;{{$detail.NAME_LABEL}}&quot; maxlength=&quot;20&quot;&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;专业公司&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写专业公司，建议6个字或12个字符以内&quot; id=&quot;company&quot; value=&quot;{{$detail.COMPANY}}&quot; maxlength=&quot;20&quot;/&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;类型&lt;/span&gt;
+                   &lt;select class=&quot;m_location my-dropdown-class&quot; id=&quot;type&quot;&gt;
+                       &lt;option value=&quot;&quot;&gt;请选择类型&lt;/option&gt;
+                       &lt;option value=&quot;1&quot; {{if $detail.TYPE eq '0'}}selected{{/if}}&gt;文本&lt;/option&gt;
+                       &lt;option value=&quot;2&quot; {{if $detail.TYPE eq '1'}}selected{{/if}}&gt;h5&lt;/option&gt;
+                       &lt;option value=&quot;3&quot; {{if $detail.TYPE eq '2'}}selected{{/if}}&gt;原生&lt;/option&gt;
+                   &lt;/select&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;链接或链接参数&lt;/span&gt;
+                   &lt;input class=&quot;m_rtinput  &quot; placeholder=&quot;请填写链接或链接参数&quot; id=&quot;url&quot; value=&quot;{{$detail.URL}}&quot; maxlength=&quot;1000&quot;/&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;分类&lt;/span&gt;
+                   &lt;select class=&quot;m_location&quot; id=&quot;pc_category&quot;&gt;
+                       &lt;option value=&quot;&quot;&gt;请选择分类&lt;/option&gt;
+                       {{if isset($pc_category)}}
+                       {{foreach from=$pc_category   key=key item=item}}
+                       &lt;option value=&quot;{{$item.id}}&quot; {{if $detail.CATEGORY_ID === $item.id}}selected{{/if}}&gt;{{$item.name}}&lt;/option&gt;
+                       {{/foreach}}
+                       {{/if}}
+                   &lt;/select&gt;
+               &lt;/li&gt;
+               &lt;li style=&quot;position:relative&quot;&gt;
+                   &lt;span&gt;价格（或价格描述）&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写价格或价格描述，建议6个字或12个字符以内&quot; id=&quot;price_desc&quot; value=&quot;{{$detail.PRICE_DESC}}&quot; maxlength=&quot;20&quot;/&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;特殊处理词&lt;/span&gt;
+                   &lt;input  class=&quot;inputbox&quot;  placeholder=&quot;请填写价格描述里需要特殊处理的词，多个词用‘|’隔开&quot; id=&quot;price_desc_spec&quot; value=&quot;{{$detail.PRICE_DESC_SPEC}}&quot; maxlength=&quot;20&quot;&gt;
+               &lt;/li&gt;
+               &lt;li style=&quot;position:relative&quot;&gt;
+                   &lt;span&gt;比率&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写比率，小数点后保留3位&quot; id=&quot;rate&quot; value=&quot;{{$detail.RATE}}&quot; maxlength=&quot;15&quot;/&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;特殊处理词&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写价格描述里需要特殊处理的词，多个词用‘|’隔开&quot; id=&quot;rate_spec&quot; value=&quot;{{$detail.RATE_SPEC}}&quot; maxlength=&quot;20&quot;&gt;
+               &lt;/li&gt;
+               &lt;li style=&quot;position:relative&quot;&gt;
+                   &lt;span&gt;期限&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写期限，建议6个字以内&quot; id=&quot;term_limit&quot; value=&quot;{{$detail.TERM_LIMIT}}&quot; maxlength=&quot;15&quot;&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;特殊处理词&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写价格描述里需要特殊处理的词，多个词用‘|’隔开&quot; id=&quot;term_limit_spec&quot; value=&quot;{{$detail.TERM_LIMIT_SPEC}}&quot; maxlength=&quot;20&quot;&gt;
+               &lt;/li&gt;
+               &lt;li style=&quot;position:relative&quot;&gt;
+                   &lt;span&gt;数量描述&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写数量描述，建议15个字符以内&quot; id=&quot;number_desc&quot; value=&quot;{{$detail.NUMBER_DESC}}&quot; maxlength=&quot;15&quot;/&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;特殊处理词&lt;/span&gt;
+                   &lt;input class=&quot;inputbox&quot; placeholder=&quot;请填写价格描述里需要特殊处理的词，多个词用‘|’隔开&quot; id=&quot;number_desc_spec&quot; value=&quot;{{$detail.NUMBER_DESC_SPEC}}&quot; maxlength=&quot;20&quot;&gt;
+               &lt;/li&gt;
+               &lt;li style=&quot;position:relative&quot;&gt;
+                   &lt;span&gt;简短描述&lt;/span&gt;
+                   &lt;textarea class=&quot;inputbox&quot; placeholder=&quot;请填写简短描述，理财类8字以内，其余12字以内&quot; id=&quot;short_desc&quot; maxlength=&quot;30&quot;&gt;{{$detail.SHORT_DESC}}&lt;/textarea&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;特殊处理词&lt;/span&gt;
+                   &lt;textarea  class=&quot;inputbox&quot;  placeholder=&quot;请填写简短描述里需要特殊处理的词，多个词用‘|’隔开&quot;  id=&quot;short_desc_spec&quot; maxlength=&quot;30&quot;&gt;{{$detail.SHORT_DESC_SPEC}}&lt;/textarea&gt;
+               &lt;/li&gt;
+               &lt;li style=&quot;position:relative&quot;&gt;
+                   &lt;span&gt;描述&lt;/span&gt;
+                   &lt;textarea class=&quot;inputbox&quot; placeholder=&quot;请填写描述，建议12字以内&quot; id=&quot;desc&quot; maxlength=&quot;30&quot;&gt;{{$detail.DESC}}&lt;/textarea&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;特殊处理词&lt;/span&gt;
+                   &lt;textarea  class=&quot;inputbox&quot;  placeholder=&quot;请填写描述里需要特殊处理的词，多个词用‘|’隔开&quot;  id=&quot;desc_spec&quot; maxlength=&quot;30&quot;&gt;{{$detail.DESC_SPEC}}&lt;/textarea&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;是否显示按钮&lt;/span&gt;
+                   &lt;select class=&quot;select&quot; id=&quot;is_show&quot;&gt;
+                       &lt;option value=&quot;1&quot; {{if $detail.IS_SHOW eq '0'}}selected{{/if}}&gt;否&lt;/option&gt;
+                       &lt;option value=&quot;2&quot; {{if $detail.IS_SHOW eq '1'}}selected{{/if}}&gt;是&lt;/option&gt;
+                   &lt;/select&gt;
+                   &lt;span style=&quot;text-align:right&quot;&gt;按钮文本&lt;/span&gt;
+                   &lt;input  class=&quot;inputbox&quot; placeholder=&quot;请填写按钮文本，4个字以内&quot; id=&quot;button_text&quot; value=&quot;{{$detail.BUTTON_TEXT}}&quot;  maxlength=&quot;20&quot;/&gt;
+               &lt;/li&gt;
+               &lt;li style=&quot;position:relative;&quot;&gt;
+                   &lt;span&gt;排序&lt;/span&gt;
+                   &lt;input  class=&quot;m_border placeholder&quot; id=&quot;sort&quot; name=&quot;SORT&quot; style=&apos;width: 120px;height: 35px;line-height: 35px;text-indent:15px&apos; placeholder=&quot;(请选择排序序号)&quot; type=&apos;number&apos; min=&apos;1&apos; oninput=&quot;if(value.length&gt;6)value=value.slice(0,6)&quot; value=&quot;{{$detail.SORT}}&quot;/&gt;
+               &lt;/li&gt;
+               &lt;li class=&quot;m_shangchuang&quot;&gt;
+                   &lt;span&gt;图片&lt;/span&gt;
+                   &lt;div&gt;
+                       &lt;em class=&quot;m_inputFillBox&quot;&gt;上传图片  &lt;input type=&quot;file&quot;  class=&quot;m_inputFill pic&quot; name=&apos;upload_img&apos;&gt;&lt;/em&gt;
+                       &lt;em&gt;支持扩展名: *.bmp、*.jpeg、*.png、 *.jpg、 *.gif, 文件上传大小请勿超过1M.&lt;/em&gt;
+                   &lt;/div&gt;
+                   &lt;div class=&quot;m_rtinput m_border m_fill&quot; style=&quot;&quot;&gt;
+                       &lt;input type=&quot;hidden&quot; id=&apos;pic&apos; value=&quot;{{$detail.PIC}}&quot;/&gt;
+                       &lt;img id=&quot;product_pic&quot; src=&quot;{{$detail.PIC_URL}}&quot; /&gt;
+                       &lt;span class=&apos;m_delete pic_delete&apos;&gt;x&lt;/span&gt;
+                   &lt;/div&gt;
+               &lt;/li&gt;
+               &lt;li class=&quot;m_shangchuang&quot;&gt;
+                   &lt;span&gt;中图&lt;/span&gt;
+                   &lt;div&gt;
+                       &lt;em class=&quot;m_inputFillBox&quot;&gt;上传图片  &lt;input type=&quot;file&quot;  class=&quot;m_inputFill middle_pic&quot; name=&apos;upload_img&apos;&gt;&lt;/em&gt;
+                       &lt;em&gt;支持扩展名: *.bmp、*.jpeg、*.png、 *.jpg、 *.gif, 文件上传大小请勿超过1M.&lt;/em&gt;
+                   &lt;/div&gt;
+                   &lt;div class=&quot;m_rtinput m_border m_fill&quot; style=&quot;&quot;&gt;
+                       &lt;input type=&quot;hidden&quot; id=&apos;middle_pic&apos; value=&quot;{{$detail.MIDDLE_PIC}}&quot;/&gt;
+                       &lt;img id=&quot;product_middle_pic&quot; src=&quot;{{$detail.MIDDLE_PIC_URL}}&quot; /&gt;
+                       &lt;span class=&apos;m_delete middle_pic_delete&apos;&gt;x&lt;/span&gt;
+                   &lt;/div&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;seo标题&lt;/span&gt;
+                   &lt;input class=&quot;m_rtinput &quot; placeholder=&quot;请填写seo标题&quot; maxlength=&quot;80&quot; id=&apos;seo_title&apos;  value=&quot;{{$detail.SEO_TITLE}}&quot;/&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;seo关键词&lt;/span&gt;
+                   &lt;input class=&quot;m_rtinput &quot; placeholder=&quot;请填写seo关键词&quot; maxlength=&quot;80&quot; id=&apos;seo_keyword&apos;  value=&quot;{{$detail.SEO_KEYWORD}}&quot;/&gt;
+               &lt;/li&gt;
+               &lt;li&gt;
+                   &lt;span&gt;seo描述&lt;/span&gt;
+                   &lt;input class=&quot;m_rtinput &quot; placeholder=&quot;请填写seo描述&quot; maxlength=&quot;80&quot; id=&apos;seo_desc&apos;  value=&quot;{{$detail.SEO_DESC}}&quot;/&gt;
+               &lt;/li&gt;
+               &lt;div class=&quot;linear&quot;&gt;&lt;/div&gt;
+               &lt;button class=&quot;m_button m_submit select_pingdao&quot;&gt;提交&lt;/button&gt;
+           &lt;/ul&gt;
+       &lt;/div&gt;
+       &lt;div style=&quot;clear:both&quot;&gt;&lt;/div&gt;
+   &lt;/div&gt;
+   &lt;div style=&quot;clear:both&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+{{include file="../../common/footer.html"}}
+&lt;script type=&quot;text/javascript&quot; src=&quot;{{site_url('/assets/js/lib/layui/layui.js')}}&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;{{site_url('/assets/pc/js/pc_product/add.js')}}&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h4 id="3-M层代码"><a href="#3-M层代码" class="headerlink" title="3.M层代码"></a>3.M层代码</h4><pre><code>&lt;?php
+
+/**
+* PC产品配置model
+* @author ZHAOYANG732
+* @date 2018/3/22
+*/
+class Pc_product_model extends MY_Pc_Model {
+
+   public function __construct() {
+       parent::__construct();
+       $this-&gt;table_name = $this-&gt;_table-&gt;PRODUCT;
+   }
+
+   /**
+    * 统计总数
+    * @param string $where
+    * @return unknown
+    */
+   public function get_count($where = &apos;&apos;) {
+       $this-&gt;db-&gt;from($this-&gt;table_name)-&gt;select();
+       $this-&gt;db-&gt;where(&apos;STATUS != 2&apos;);
+       if ($where) {
+           $this-&gt;db-&gt;where($where);
+       }
+       return $this-&gt;db-&gt;count_all_results();
+   }
+
+   /**
+    * 获取列表
+    * @param string $where
+    * @return unknown
+    */
+   public function get_list($where = &apos;&apos;, $offset = &apos;0&apos;, $length = &apos;10&apos;) {
+       $data = [];
+       $this-&gt;db-&gt;from($this-&gt;table_name)-&gt;select();
+       $this-&gt;db-&gt;where(&apos;STATUS != 2&apos;);
+       if ($where) {
+           $this-&gt;db-&gt;where($where);
+       }
+       $this-&gt;db-&gt;order_by(&apos;UPDATE_TIME DESC&apos;)-&gt;limit($length, $offset);
+
+       return $this-&gt;db-&gt;get()-&gt;result_array();
+   }
+
+   /**
+    * 添加
+    * @param unknown $data
+    * @return number|Ambigous &lt;number, unknown&gt;
+    */
+   public function add_product($data) {
+       if (!$data) return FALSE;
+
+       $data[&apos;STATUS&apos;] = 0;
+       return $this-&gt;add_info($data);
+   }
+
+   /**
+    * 修改
+    * @param unknown $data
+    * @return number|Ambigous &lt;number, unknown&gt;
+    */
+   public function update_product($where, $data) {
+       if (!$data) return FALSE;
+
+       return $this-&gt;update_info($where, $data);
+   }
+
+   /**
+    * 获取产品的分类id
+    * @param string $where
+    * @return unknown
+    */
+   public function get_cate_id() {
+       $data = [];
+       $this-&gt;db-&gt;from($this-&gt;table_name)-&gt;select(&apos;CATEGORY_ID&apos;);
+       $this-&gt;db-&gt;where(&apos;STATUS != 2&apos;);
+       $this-&gt;db-&gt;order_by(&apos;ID DESC&apos;);
+       return $this-&gt;db-&gt;get()-&gt;result_array();
+   }
+
+}
+
+
+
+&lt;?php
+
+/**
+* PC分类model
+* @author zhaoyang732
+* @date 2018-03-29
+*/
+class Pc_category_model extends MY_Pc_Model {
+
+   public function __construct() {
+       parent::__construct();
+       $this-&gt;table_name = $this-&gt;_table-&gt;PC_CATEGORY;
+   }
+
+   /**
+    * 统计总数
+    * @param string $where
+    * @return unknown
+    */
+   public function get_count($where = &apos;&apos;) {
+       $this-&gt;db-&gt;from($this-&gt;table_name)-&gt;select();
+       if ($where) {
+           $this-&gt;db-&gt;where($where);
+       }
+       return $this-&gt;db-&gt;count_all_results();
+   }
+
+   /**
+    * 获取列表
+    * @param string $where
+    * @return unknown
+    */
+   public function get_list($where = &apos;&apos;, $offset = &apos;0&apos;, $length = &apos;10&apos;) {
+       $data = [];
+       $this-&gt;db-&gt;from($this-&gt;table_name)-&gt;select();
+       if ($where) {
+           $this-&gt;db-&gt;where($where);
+       }
+       $this-&gt;db-&gt;order_by(&apos;UPDATE_TIME DESC&apos;)-&gt;limit($length, $offset);
+
+       return $this-&gt;db-&gt;get()-&gt;result_array();
+   }
+
+   /**
+    * 添加分类
+    * @param unknown $data
+    * @return number|Ambigous &lt;number, unknown&gt;
+    */
+   public function add_category($data, $table_name = &apos;&apos;) {
+       if (!$data) return FALSE;
+
+       $data[&apos;STATUS&apos;] = 0;
+       return $this-&gt;add_info($data, $table_name);
+   }
+
+   /**
+    * 修改分类
+    * @param unknown $data
+    * @return number|Ambigous &lt;number, unknown&gt;
+    */
+   public function update_category($where, $data, $table_name = &apos;&apos;) {
+       if (!$data) return FALSE;
+
+       return $this-&gt;update_info($where, $data, $table_name);
+   }
+
+   /**
+    * 获取上一级分类
+    */
+   public function get_parent_category($where = &apos;&apos;) {
+       $this-&gt;db-&gt;from($this-&gt;table_name)
+           -&gt;select(&apos;ID, NAME&apos;)
+           -&gt;where([&apos;STATUS&apos; =&gt; 0]);
+       if ($where) {
+           $this-&gt;db-&gt;where($where);
+       }
+       $this-&gt;db-&gt;where(&apos;PARENT_ID IS NULL&apos;);
+       $this-&gt;db-&gt;order_by(&apos;SORT ASC&apos;);
+       return $this-&gt;db-&gt;get()-&gt;result_array();
+   }
+
+   /**
+    *
+    * @return array
+    */
+   public function getCategory() {
+       $this-&gt;db-&gt;from($this-&gt;table_name)-&gt;select(&apos;ID as id,NAME as name, PARENT_ID as parent_id&apos;)-&gt;order_by(&apos;SORT ASC&apos;);
+       $data = $this-&gt;db-&gt;get()-&gt;result_array();
+       return $data;
+   }
+
+   /**
+    * 获取关联产品
+    * @param string $where
+    */
+   public function get_productInfo($category_id, $where, $offset = &apos;0&apos;, $length = &apos;10&apos;) {
+       if (!$category_id) return [];
+       if ($where) {
+           $this-&gt;db-&gt;where($where);
+       }
+       $this-&gt;db-&gt;from($this-&gt;table_name . &apos; c&apos;)-&gt;from($this-&gt;_table-&gt;PRODUCT . &apos; p&apos;)
+           -&gt;select(&apos;p.NAME,p.URL,p.PIC,p.SHORT_DESC,p.DESC,p.STATUS&apos;)
+           -&gt;where(&apos;c.ID = p.CATEGORY_ID&apos;)
+           -&gt;where([&apos;c.ID&apos; =&gt; $category_id, &apos;p.STATUS&apos; =&gt; 0, &apos;c.STATUS&apos; =&gt; 0])-&gt;limit($length, $offset);
+
+       return $this-&gt;db-&gt;get()-&gt;result_array();
+   }
+
+   /**
+    * id获取分类名称
+    * @param $ids
+    * @return array
+    */
+   public function get_Cate_by_id($ids) {
+       if (empty($ids)) {
+           return [];
+       }
+       $data = $this-&gt;db-&gt;from($this-&gt;table_name)
+           -&gt;select(&apos;ID,NAME&apos;)
+           -&gt;where_in(&apos;ID&apos;, $ids)
+           -&gt;get()-&gt;result_array();
+
+       return $data;
+   }
+
+}
 </code></pre>
     </div>
 
