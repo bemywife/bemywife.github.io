@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>Python之print语句 | fightzhao</title>
+<title>Python 之Set | fightzhao</title>
 
 
     <link rel="alternate" href="/atom.xml" title="fightzhao" type="application/atom+xml">
@@ -137,9 +137,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Python之print语句">
+        <h1 id="Python 之Set">
             
-	            Python之print语句
+	            Python 之Set
             
         </h1>
         <div class="post-meta">
@@ -157,8 +157,8 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a href="/tags/Python">
-               Python
+            <a href="/tags/python">
+               python
             </a>
             
         </span>
@@ -176,22 +176,26 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="print语句可以向屏幕上输出指定的文字。比如输出’hello-world’，用代码实现如下："><a href="#print语句可以向屏幕上输出指定的文字。比如输出’hello-world’，用代码实现如下：" class="headerlink" title="print语句可以向屏幕上输出指定的文字。比如输出’hello, world’，用代码实现如下："></a>print语句可以向屏幕上输出指定的文字。比如输出’hello, world’，用代码实现如下：</h1><blockquote>
-<blockquote>
-<blockquote>
-<p>print ‘hello, world’<br><strong>注意：</strong><br>1.当我们在Python交互式环境下编写代码时，>>>是Python解释器的提示符，不是代码的一部分。<br>2.当我们在文本编辑器中编写代码时，千万不要自己添加 >>>。<br>print语句也可以跟上多个字符串，用逗号“,”隔开，就可以连成一串输出：<br>print ‘The quick brown fox’, ‘jumps over’, ‘the lazy dog’<br>The quick brown fox jumps over the lazy dog<br>print会依次打印每个字符串，遇到逗号“,”会输出一个空格，因此，输出的字符串是这样拼起来的：</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>print也可以打印整数，或者计算结果：</p>
+        <p>Python中什么是set<br>dict的作用是建立一组 key 和一组 value 的映射关系，dict的key是不能重复的。</p>
+<p>有的时候，我们只想要 dict 的 key，不关心 key 对应的 value，目的就是保证这个集合的元素不会重复，这时，set就派上用场了。</p>
+<p>set 持有一系列元素，这一点和 list 很像，但是set的元素没有重复，而且是无序的，这点和 dict 的 key很像。</p>
+<p>创建 set 的方式是调用 set() 并传入一个 list，list的元素将作为set的元素：</p>
 <blockquote>
 <blockquote>
 <blockquote>
-<p>print 300<br>300    #运行结果<br>print 100 + 200<br>300    #运行结果<br>因此，我们可以把计算100 + 200的结果打印得更漂亮一点：<br>print ‘100 + 200 =’, 100 + 200<br>100 + 200 = 300     #运行结果</p>
+<p>s = set(/[‘A’, ‘B’, ‘C’/])<br>可以查看 set 的内容：</p>
+<p>print s<br>set(/[‘A’, ‘C’, ‘B’/])<br>请注意，上述打印的形式类似 list， 但它不是 list，仔细看还可以发现，打印的顺序和原始 list 的顺序有可能是不同的，因为set内部存储的元素是无序的。</p>
 </blockquote>
 </blockquote>
 </blockquote>
-<h1 id="Python的注释"><a href="#Python的注释" class="headerlink" title="Python的注释"></a>Python的注释</h1><p>任何时候，我们都可以给程序加上注释。注释是用来说明代码的，给自己或别人看，而程序运行的时候，Python解释器会直接忽略掉注释，所以，有没有注释不影响程序的执行结果，但是影响到别人能不能看懂你的代码。<br>Python的注释以 # 开头，后面的文字直到行尾都算注释<br># 这一行全部都是注释…<br>print ‘hello’ # 这也是注释<br>注释还有一个巧妙的用途，就是一些代码我们不想运行，但又不想删除，就可以用注释暂时屏蔽掉：<br># 暂时不想运行下面一行代码:<br># print ‘hello, python.’</p>
+<p>因为set不能包含重复的元素，所以，当我们传入包含重复元素的 list 会怎么样呢？</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>s = set(/[‘A’, ‘B’, ‘C’, ‘C’/])<br>print s<br>set(/[‘A’, ‘C’, ‘B’/])<br>len(s)<br>3<br>结果显示，set会自动去掉重复的元素，原来的list有4个元素，但set只有3个元素。</p>
+</blockquote>
+</blockquote>
+</blockquote>
 
     </div>
 
@@ -209,10 +213,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/blog/Python中什么是变量20170903/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+        <a href="/blog/php上传文件时候配置php.ini中的upload_tmp_dir20170903/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
     
     
-        <a href="/blog/python中的数据类型20170903/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+        <a href="/blog/Python之访问dict20170903/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
     
 </div>
 
