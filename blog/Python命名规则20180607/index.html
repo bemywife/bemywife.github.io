@@ -177,16 +177,70 @@
     
     <div class="post-body post-content">
         <h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><ul>
-<li>变量的命名规则<ul>
-<li>可以包含数字、大小写字母，下划线或者更多。</li>
-<li>数字不可以大头</li>
-<li>一般在python中，以下划线开头的具有特殊含义，不加衣使用。</li>
-<li>大小写不一样，PHP中是一样的</li>
-<li>推荐：<ul>
-<li>具有固定含义的英文单词或者缩写，srv=server<ul>
-<li>驼峰命名：<ul>
-<li>大驼峰：每个单词首字母大写（类名）</li>
-<li>小驼峰：普通变量或者函数命名</li>
+<li><p>程序=数据结构+算法</p>
+<ul>
+<li><p>变量就是可以重复使用的一个量，或者叫一个代号</p>
+</li>
+<li><p>变量命名的规则</p>
+<ul>
+<li>变量命名可以包含数字，大小写字母，下划线或者更多，但是我们不推荐除了前三种内容之外的符号</li>
+</ul>
+<ul>
+<li><p>数字不可以打头</p>
+<ul>
+<li><p>4man, 5for 是不可以的</p>
+<ul>
+<li>man4, for5是可以的</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>一般在python中，以下划线开头的内容具有特殊含义，不建议使用</p>
+<ul>
+<li>比如 _age, _name，理论可以，但强烈不推荐，包括但不限于一个下划线开头和两个连续下划线开头\n”,</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>大小写不一样，俗称大小写敏感</p>
+<ul>
+<li>ForMan 跟 forMan不是一个变量名称</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>推荐：</p>
+<ul>
+<li><p>使用具有固定含义的英文单词或者缩写， srv=server skt=socket,一般以posix命名规则为主</p>
+</li>
+<li><p>驼峰命名法</p>
+<pre><code>- 名称以单词自动连接，且每个单词首字母大写
+
+   - 大驼峰，每个单词第一个字母均大写
+
+        - 在Python中给类命名使用此法
+
+         - MyFirstLove, IntOne
+
+     - 小驼峰，类似大驼峰，但第一个字母小写
+
+         - 在Python中一般给普通变量或者函数命名
+
+             - myFirstLove, intOne
+
+                - posix写法
+
+ - 多个单词用下划线链接
+
+    - 单词全部小写
+
+        - my_first_love, int_one
+
+        - 保留字和关键字
+</code></pre><ul>
+<li><p>变量命名必须避开，不能跟关键字和保留字重复</p>
+<ul>
+<li>class， def， break，for</li>
 </ul>
 </li>
 </ul>
