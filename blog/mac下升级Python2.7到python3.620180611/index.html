@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>高等数学体系 | fightzhao</title>
+<title>mac下升级Python2.7到python3.6 | fightzhao</title>
 
 
     <link rel="alternate" href="/atom.xml" title="fightzhao" type="application/atom+xml">
@@ -137,9 +137,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="高等数学体系">
+        <h1 id="mac下升级Python2.7到python3.6">
             
-	            高等数学体系
+	            mac下升级Python2.7到python3.6
             
         </h1>
         <div class="post-meta">
@@ -147,8 +147,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/工具">
-            工具
+        <a href="/categories/Python">
+            Python
         </a>
     </span>
     
@@ -157,8 +157,8 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            <a href="/tags/AI">
-               AI
+            <a href="/tags/Python">
+               Python
             </a>
             
         </span>
@@ -167,7 +167,7 @@
     
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
-        <span class="date-meta">2018/05/21</span>
+        <span class="date-meta">2018/06/11</span>
     </span>
 </div>
 
@@ -176,9 +176,15 @@
     </div>
     
     <div class="post-body post-content">
-        <h2 id="1-证明N和Z的个数问题"><a href="#1-证明N和Z的个数问题" class="headerlink" title="1.证明N和Z的个数问题"></a>1.证明N和Z的个数问题</h2><p>找到一一对应关系即可证明二者的个数是相同的</p>
-<h2 id="2-证明实数的个数远大于自然数个数"><a href="#2-证明实数的个数远大于自然数个数" class="headerlink" title="2.证明实数的个数远大于自然数个数"></a>2.证明实数的个数远大于自然数个数</h2><p>第一步 取0，1开区间<br><img src="/images/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-05-21%20%E4%B8%8B%E5%8D%888.06.32.png" alt=""></p>
-<p>以图片中的A为圆心作直径，总会落到实数轴上。<br>第二步骤，反证法<br><img src="/images/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-05-21%20%E4%B8%8B%E5%8D%888.23.08.png" alt=""><br>证明：构造一个a1，取图片中第n位的小数点后第n个，之后对a1作变换：<br>规则是遇到9变为0，其他都为9  这样的数属于（0，1）但是不在刚刚一一对应的列表中</p>
+        <h2 id="1-下载python最新版本"><a href="#1-下载python最新版本" class="headerlink" title="1.下载python最新版本"></a>1.下载python最新版本</h2><p>　链接：<a href="https://www.python.org/downloads/mac-osx/" target="_blank" rel="external">https://www.python.org/downloads/mac-osx/</a><br>下载的时候拖到网页下面，选择对应的版本就可以，目前大部分mac都是64位的。<br>安装默认位置为： /Library/Frameworks/Python.framework/Versions/3.6/  </p>
+<h2 id="2-打开终端，"><a href="#2-打开终端，" class="headerlink" title="2.打开终端，"></a>2.打开终端，</h2><p>修改  /.bash<em>profile文件</em><br>在终端键入    输入open .bash_profile<br>    代码如下：</p>
+<pre><code># Setting PATH for Python 3.6
+# The original version is saved in .bash_profile.pysave
+PATH=&quot;/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}&quot;
+export PATH
+
+alias python=&quot;/Library/Frameworks/Python.framework/Versions/3.6/bin/python3.6&quot;
+</code></pre><h2 id="3-重启终端或执行"><a href="#3-重启终端或执行" class="headerlink" title="3.重启终端或执行"></a>3.重启终端或执行</h2><p>source /.bashprofile</p>
 
     </div>
 
@@ -196,10 +202,8 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/blog/Python命名规则20180607/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
     
-    
-        <a href="/blog/18年第一个大需求20180520/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+        <a href="/blog/Python命名规则20180607/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
     
 </div>
 
