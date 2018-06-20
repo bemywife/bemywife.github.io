@@ -176,66 +176,196 @@
     </div>
     
     <div class="post-body post-content">
-        <p>字符串¶<br>•    转义字符<br>•    格式化<br>•    内建函数（后延）<br>转义字符¶<br>•    用一个特殊的方法表示出一系列不方便写出的内容，比如回车键，换行键，退格键<br>•    借助反斜杠字符，一旦字符串中出现反斜杠，则反斜杠后面一个火几个字符表示已经不是原来的意思了，进行了转义<br>•    在字符串中，一旦出现反斜杠就要加倍小心，可能由转义字符出现<br>•    不同系统对换行操作有不同的表示<br>▪    windows： \n<br>▪    Linux: \r\n<br>In <a href="">2</a>:<br>s = “i love lixiaojing”<br>print(s)</p>
-<p>i love lixiaojing<br>In <a href="">8</a>:</p>
-<h1 id="如果想表示出Let‘s-go来"><a href="#如果想表示出Let‘s-go来" class="headerlink" title="如果想表示出Let‘s go来"></a>如果想表示出Let‘s go来</h1><h1 id="1-可以使用嵌套引号，即外层使用双引号"><a href="#1-可以使用嵌套引号，即外层使用双引号" class="headerlink" title="1. 可以使用嵌套引号，即外层使用双引号"></a>1. 可以使用嵌套引号，即外层使用双引号</h1><h1 id="2-转义字符"><a href="#2-转义字符" class="headerlink" title="2. 转义字符"></a>2. 转义字符</h1><p>s = “Let’s go”<br>print(s)</p>
+        <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ul>
+<li>转义字符</li>
+<li>格式化</li>
+<li>内建函数（后延）<h2 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h2></li>
+<li>用一个特殊的方法表示出一系列不方便写出的内容，比如回车键，换行键，退格键</li>
+<li>借助反斜杠字符，一旦字符串中出现反斜杠，则反斜杠后面一个火几个字符表示已经不是原来的意思了，进行了转义</li>
+<li>在字符串中，一旦出现反斜杠就要加倍小心，可能由转义字符出现</li>
+<li>不同系统对换行操作有不同的表示</li>
+<li>windows： \n</li>
+<li>Linux: \r\n</li>
+</ul>
+<p>s = “i love lixiaojing”<br>print(s)</p>
+<p>i love lixiaojing</p>
+<h3 id="如果想表示出Let‘s-go来"><a href="#如果想表示出Let‘s-go来" class="headerlink" title="如果想表示出Let‘s go来"></a>如果想表示出Let‘s go来</h3><h4 id="1-可以使用嵌套引号，即外层使用双引号"><a href="#1-可以使用嵌套引号，即外层使用双引号" class="headerlink" title="1. 可以使用嵌套引号，即外层使用双引号"></a>1. 可以使用嵌套引号，即外层使用双引号</h4><h4 id="2-转义字符"><a href="#2-转义字符" class="headerlink" title="2. 转义字符"></a>2. 转义字符</h4><p>s = “Let’s go”<br>print(s)</p>
+<blockquote>
 <h1 id="’-‘"><a href="#’-‘" class="headerlink" title="\’ == ‘"></a>\’ == ‘</h1><p>ss = ‘Let\’s go’<br>print(ss)</p>
 <h1 id=""><a href="#" class="headerlink" title="\ = \"></a>\ = \</h1><p>sss = “c:\user”<br>print(sss)</p>
+</blockquote>
 <h1 id="回车换行符"><a href="#回车换行符" class="headerlink" title="回车换行符"></a>回车换行符</h1><p>s1 = “I love \r\n wangixoajing”<br>print(s1)</p>
 <p>Let’s go<br>Let’s go<br>c:\user<br>I love<br> wangixoajing</p>
-<p>字符串的格式化¶<br>•    把字符串按照一定格式打印或者填充<br>•    格式化由两种方法<br>▪    利用百分号（%）<br>▪    利用format函数<br>In <a href="">9</a>:<br>s = “xxx 您好， 我们图灵学院开课了，免费的Python呀，不学白不学，学了也白学。”</p>
-<p>利用百分号格式化¶<br>•    在字符串中，利用%表示一个特殊的含义，表示对字符进行格式化<br>•    %d: 此处应该放入一个整数<br>•    %s: 表示此处应该放入一个字符串<br>In <a href="">12</a>:<br>s = “I love %s”</p>
-<h1 id="下面打印，直接把-s作为字符串的一个内容打印出来"><a href="#下面打印，直接把-s作为字符串的一个内容打印出来" class="headerlink" title="下面打印，直接把%s作为字符串的一个内容打印出来"></a>下面打印，直接把%s作为字符串的一个内容打印出来</h1><p>print(s)</p>
-<p>I love %s<br>In <a href="">13</a>:<br>print(“I love %s”%”wangxiaojing”)</p>
-<p>I love wangxiaojing<br>In <a href="">15</a>:<br>print( s%”wangxiaojing”)</p>
-<p>I love wangxiaojing<br>In <a href="">18</a>:<br>s = “I am %d years old”</p>
-<h1 id="留意下面两句话的区别和结果"><a href="#留意下面两句话的区别和结果" class="headerlink" title="留意下面两句话的区别和结果"></a>留意下面两句话的区别和结果</h1><p>print(s)<br>print(s%18)</p>
-<p>I am %d years old<br>I am 18 years old<br>In <a href="">22</a>:<br>s = “I am %s, i am %d years old”<br>print(s)</p>
-<h1 id="注意以下表达的出错原因"><a href="#注意以下表达的出错原因" class="headerlink" title="注意以下表达的出错原因"></a>注意以下表达的出错原因</h1><h1 id="如果字符串中由占位符，则由几个占位符必须用几个实际内容代替，或者一个也不要"><a href="#如果字符串中由占位符，则由几个占位符必须用几个实际内容代替，或者一个也不要" class="headerlink" title="如果字符串中由占位符，则由几个占位符必须用几个实际内容代替，或者一个也不要"></a>如果字符串中由占位符，则由几个占位符必须用几个实际内容代替，或者一个也不要</h1><h1 id="print-s-”tulingxueyuan”"><a href="#print-s-”tulingxueyuan”" class="headerlink" title="print(s%”tulingxueyuan”)"></a>print(s%”tulingxueyuan”)</h1><h1 id="如果出现多个占位符，则相应内容需要用括号括起来"><a href="#如果出现多个占位符，则相应内容需要用括号括起来" class="headerlink" title="如果出现多个占位符，则相应内容需要用括号括起来"></a>如果出现多个占位符，则相应内容需要用括号括起来</h1><p>print(s%(“tulingxueyuan”, 18))</p>
+<h3 id="字符串的格式化"><a href="#字符串的格式化" class="headerlink" title="字符串的格式化"></a>字符串的格式化</h3><ul>
+<li>把字符串按照一定格式打印或者填充</li>
+<li>格式化由两种方法</li>
+<li>利用百分号（%）</li>
+<li>利用format函数<br>s = “xxx 您好， 我们图灵学院开课了，免费的Python呀，不学白不学，学了也白学。”</li>
+</ul>
+<h3 id="利用百分号格式化"><a href="#利用百分号格式化" class="headerlink" title="利用百分号格式化"></a>利用百分号格式化</h3><ul>
+<li>在字符串中，利用%表示一个特殊的含义，表示对字符进行格式化</li>
+<li>%d: 此处应该放入一个整数</li>
+<li>%s: 表示此处应该放入一个字符串<br>s = “I love %s”<h4 id="下面打印，直接把-s作为字符串的一个内容打印出来"><a href="#下面打印，直接把-s作为字符串的一个内容打印出来" class="headerlink" title="下面打印，直接把%s作为字符串的一个内容打印出来"></a>下面打印，直接把%s作为字符串的一个内容打印出来</h4>print(s)</li>
+</ul>
+<p>I love %s<br>print(“I love %s”%”wangxiaojing”)</p>
+<p>I love wangxiaojing<br>print( s%”wangxiaojing”)</p>
+<p>I love wangxiaojing<br>s = “I am %d years old”</p>
+<h4 id="留意下面两句话的区别和结果"><a href="#留意下面两句话的区别和结果" class="headerlink" title="留意下面两句话的区别和结果"></a>留意下面两句话的区别和结果</h4><p>print(s)<br>print(s%18)</p>
+<p>I am %d years old<br>I am 18 years old<br>s = “I am %s, i am %d years old”<br>print(s)</p>
+<h4 id="注意以下表达的出错原因"><a href="#注意以下表达的出错原因" class="headerlink" title="注意以下表达的出错原因"></a>注意以下表达的出错原因</h4><h4 id="如果字符串中由占位符，则由几个占位符必须用几个实际内容代替，或者一个也不要"><a href="#如果字符串中由占位符，则由几个占位符必须用几个实际内容代替，或者一个也不要" class="headerlink" title="如果字符串中由占位符，则由几个占位符必须用几个实际内容代替，或者一个也不要"></a>如果字符串中由占位符，则由几个占位符必须用几个实际内容代替，或者一个也不要</h4><h4 id="print-s-”tulingxueyuan”"><a href="#print-s-”tulingxueyuan”" class="headerlink" title="print(s%”tulingxueyuan”)"></a>print(s%”tulingxueyuan”)</h4><h4 id="如果出现多个占位符，则相应内容需要用括号括起来"><a href="#如果出现多个占位符，则相应内容需要用括号括起来" class="headerlink" title="如果出现多个占位符，则相应内容需要用括号括起来"></a>如果出现多个占位符，则相应内容需要用括号括起来</h4><p>print(s%(“tulingxueyuan”, 18))</p>
 <p>I am %s, i am %d years old<br>I am tulingxueyuan, i am 18 years old</p>
-<p>format函数格式化字符串¶<br>•    直接用ｆｏｒｍａｔ函数进行格式化<br>•    推荐使用这种方法<br>•    在使用上，以{}和：代替%号，后面用format带参数完成<br>In <a href="">25</a>:<br>s = “I love {}”.format(“LiXiaojing”)<br>print(s)</p>
+<p>format函数格式化字符串</p>
+<ul>
+<li>直接用ｆｏｒｍａｔ函数进行格式化</li>
+<li>推荐使用这种方法</li>
+<li>在使用上，以{}和：代替%号，后面用format带参数完成<br>s = “I love {}”.format(“LiXiaojing”)<br>print(s)</li>
+</ul>
 <p>s = “Yes, i am {1} years old, I love {0} and i am {1} years old”.format(“Tulingxueyuan”, 18)<br>print(s)</p>
 <p>I love LiXiaojing<br>Yes, i am 18 years old, I love Tulingxueyuan and i am 18 years old</p>
-<p>None¶<br>•    表示什么都没有<br>•    如果函数没有返回值，可以返回 None<br>•    用来占位置<br>•    用来接触变量绑定</p>
-<p>表达式¶<br>•    由一个或者几个数字或者变量和运算符组合成的一行代码<br>•    通常会返回一个结果 # 运算符<br>•    由一个以上的值经过变化得到新值的过程就叫运算<br>•    用于运算的符号叫运算符<br>•    运算符分类：<br>▪    算数运算符<br>▪    比较或者关系运算符<br>▪    赋值运算符<br>▪    逻辑运算符<br>▪    位运算<br>▪    成员运算<br>▪    身份运算符</p>
-<p>算数运算符¶<br>•    进行算数运算的符号<br>•    python没有自增自减运算符<br>In <a href="">32</a>:</p>
-<h1 id="跟正常算术运算符一模一样"><a href="#跟正常算术运算符一模一样" class="headerlink" title="+,-跟正常算术运算符一模一样"></a>+,-跟正常算术运算符一模一样</h1><p>a = 9+3-2<br>print(a)</p>
-<h1 id="乘号用星号-代替"><a href="#乘号用星号-代替" class="headerlink" title="乘号用星号(*)代替"></a>乘号用星号(*)代替</h1><p>a = 9 * 4<br>print(a)</p>
-<h1 id="除号用斜杠-代替"><a href="#除号用斜杠-代替" class="headerlink" title="除号用斜杠(/)代替"></a>除号用斜杠(/)代替</h1><h1 id="在Python2-x-和python3-x-中，除号-结果可能不一致，此处以3系列为准"><a href="#在Python2-x-和python3-x-中，除号-结果可能不一致，此处以3系列为准" class="headerlink" title="在Python2.x 和python3.x 中，除号(/)结果可能不一致，此处以3系列为准"></a>在Python2.x 和python3.x 中，除号(/)结果可能不一致，此处以3系列为准</h1><p>a = 9/4<br>print(a)</p>
+<h1 id="None"><a href="#None" class="headerlink" title="None"></a>None</h1><ul>
+<li>表示什么都没有<ul>
+<li>如果函数没有返回值，可以返回 None</li>
+<li>用来占位置</li>
+<li>用来接触变量绑定</li>
+</ul>
+</li>
+</ul>
+<p>表达式</p>
+<ul>
+<li>由一个或者几个数字或者变量和运算符组合成的一行代码<ul>
+<li>通常会返回一个结果 # 运算符</li>
+<li>由一个以上的值经过变化得到新值的过程就叫运算</li>
+<li>用于运算的符号叫运算符</li>
+<li>运算符分类：</li>
+<li>算数运算符</li>
+<li>比较或者关系运算符</li>
+<li>赋值运算符</li>
+<li>逻辑运算符</li>
+<li>位运算</li>
+<li>成员运算</li>
+<li>身份运算符</li>
+</ul>
+</li>
+</ul>
+<p>算数运算符</p>
+<ul>
+<li>进行算数运算的符号<ul>
+<li>python没有自增自减运算符<h1 id="跟正常算术运算符一模一样"><a href="#跟正常算术运算符一模一样" class="headerlink" title="+,-跟正常算术运算符一模一样"></a>+,-跟正常算术运算符一模一样</h1>a = 9+3-2<br>print(a)<h1 id="乘号用星号-代替"><a href="#乘号用星号-代替" class="headerlink" title="乘号用星号(*)代替"></a>乘号用星号(*)代替</h1>a = 9 * 4<br>print(a)<h1 id="除号用斜杠-代替"><a href="#除号用斜杠-代替" class="headerlink" title="除号用斜杠(/)代替"></a>除号用斜杠(/)代替</h1><h1 id="在Python2-x-和python3-x-中，除号-结果可能不一致，此处以3系列为准"><a href="#在Python2-x-和python3-x-中，除号-结果可能不一致，此处以3系列为准" class="headerlink" title="在Python2.x 和python3.x 中，除号(/)结果可能不一致，此处以3系列为准"></a>在Python2.x 和python3.x 中，除号(/)结果可能不一致，此处以3系列为准</h1>a = 9/4<br>print(a)</li>
+</ul>
+</li>
+</ul>
 <h1 id="取余运算"><a href="#取余运算" class="headerlink" title="% 取余运算"></a>% 取余运算</h1><h1 id="两个数字相除应该有商数有余数"><a href="#两个数字相除应该有商数有余数" class="headerlink" title="两个数字相除应该有商数有余数"></a>两个数字相除应该有商数有余数</h1><h1 id="只会得到余数"><a href="#只会得到余数" class="headerlink" title="% 只会得到余数"></a>% 只会得到余数</h1><p>a = 9 % 4<br>print(a)</p>
 <h1 id="表示取商运算，也叫地板除"><a href="#表示取商运算，也叫地板除" class="headerlink" title="// 表示取商运算，也叫地板除"></a>// 表示取商运算，也叫地板除</h1><p>a = 9 // 4<br>print(a)</p>
 <h1 id="表示幂运算"><a href="#表示幂运算" class="headerlink" title="** 表示幂运算"></a>** 表示幂运算</h1><p>a = 9 ** 4<br>print(a)</p>
 <p>a = 3 ** 3<br>print(a)</p>
 <p>10<br>36<br>2.25<br>1<br>2<br>6561<br>27</p>
-<p>比较运算符¶<br>•    对两个变量或者值进行比较的运算符<br>•    比较的结果是布尔值，即True/False<br>In <a href="">35</a>:</p>
-<h1 id="等于号"><a href="#等于号" class="headerlink" title="== , 等于号"></a>== , 等于号</h1><p>a = 3 ** 4</p>
-<h1 id="下面语句执行书序是"><a href="#下面语句执行书序是" class="headerlink" title="下面语句执行书序是"></a>下面语句执行书序是</h1><h1 id="1，-计算-a-80"><a href="#1，-计算-a-80" class="headerlink" title="1， 计算 a == 80"></a>1， 计算 a == 80</h1><h1 id="2-把结果放入b中"><a href="#2-把结果放入b中" class="headerlink" title="2. 把结果放入b中"></a>2. 把结果放入b中</h1><p>b = a == 80<br>print(b)</p>
+<p>比较运算符</p>
+<ul>
+<li>对两个变量或者值进行比较的运算符<ul>
+<li>比较的结果是布尔值，即True/False<h1 id="等于号"><a href="#等于号" class="headerlink" title="== , 等于号"></a>== , 等于号</h1>a = 3 ** 4<h1 id="下面语句执行书序是"><a href="#下面语句执行书序是" class="headerlink" title="下面语句执行书序是"></a>下面语句执行书序是</h1><h1 id="1，-计算-a-80"><a href="#1，-计算-a-80" class="headerlink" title="1， 计算 a == 80"></a>1， 计算 a == 80</h1><h1 id="2-把结果放入b中"><a href="#2-把结果放入b中" class="headerlink" title="2. 把结果放入b中"></a>2. 把结果放入b中</h1>b = a == 80<br>print(b)</li>
+</ul>
+</li>
+</ul>
 <h1 id="不等于"><a href="#不等于" class="headerlink" title="!= 不等于"></a>!= 不等于</h1><p>print( 9 != 8 )</p>
 <h1 id="大于"><a href="#大于" class="headerlink" title="> 大于"></a>> 大于</h1><h1 id="lt-小于"><a href="#lt-小于" class="headerlink" title="\&lt; 小于"></a>\&lt; 小于</h1><h1 id="大于等于"><a href="#大于等于" class="headerlink" title=">= 大于等于"></a>>= 大于等于</h1><h1 id="lt-小于等于"><a href="#lt-小于等于" class="headerlink" title="\&lt;= 小于等于"></a>\&lt;= 小于等于</h1><p>False<br>True</p>
-<p>赋值运算符¶<br>In <a href="">37</a>:</p>
+<p>赋值运算符</p>
 <h1 id="赋值"><a href="#赋值" class="headerlink" title="= , 赋值"></a>= , 赋值</h1><p>a = 0<br>c = a = 4</p>
 <h1 id="是缩写，"><a href="#是缩写，" class="headerlink" title="+=, 是缩写，"></a>+=, 是缩写，</h1><p>a = 0<br>a += 7 # a = a+ 7 的缩写<br>print(a)</p>
-<h1 id="所有数学运算符都有缩写形式"><a href="#所有数学运算符都有缩写形式" class="headerlink" title="所有数学运算符都有缩写形式"></a>所有数学运算符都有缩写形式</h1><h1 id="，-×-，-都是缩写形式"><a href="#，-×-，-都是缩写形式" class="headerlink" title="-=， ×=， /=, //=, %=, **=,都是缩写形式"></a>-=， ×=， /=, //=, %=, **=,都是缩写形式</h1><p>7</p>
-<p>逻辑运算符¶<br>•    对布尔值进行计算的符号<br>•    and 逻辑与<br>•    or 逻辑或<br>•    not 逻辑非<br>•    python中逻辑运算没有异或运算<br>•    运算规则：<br>▪    and看做乘法， or看做加法，<br>▪    True看做1， False看做0<br>▪    则逻辑运算就能转换成整数数学运算<br>▪    最后结果如果是0则为False， 否则为True<br>•    逻辑运算的短路问题<br>▪    逻辑运算式，按照运算顺序计算，一旦能够确定整个式子未来的值，则不再进行计算，直接返回<br>In <a href="">40</a>:</p>
-<h1 id="逻辑运算符案例"><a href="#逻辑运算符案例" class="headerlink" title="逻辑运算符案例"></a>逻辑运算符案例</h1><p>a = True<br>b = False<br>c = True</p>
+<h1 id="所有数学运算符都有缩写形式"><a href="#所有数学运算符都有缩写形式" class="headerlink" title="所有数学运算符都有缩写形式"></a>所有数学运算符都有缩写形式</h1><h1 id="，-×-，-都是缩写形式"><a href="#，-×-，-都是缩写形式" class="headerlink" title="-=， ×=， /=, //=, %=, **=,都是缩写形式"></a>-=， ×=， /=, //=, %=, **=,都是缩写形式</h1><p>逻辑运算符</p>
+<ul>
+<li>对布尔值进行计算的符号<ul>
+<li>and 逻辑与</li>
+<li>or 逻辑或</li>
+<li>not 逻辑非</li>
+<li>python中逻辑运算没有异或运算</li>
+<li>运算规则：</li>
+<li>and看做乘法， or看做加法，</li>
+<li>True看做1， False看做0</li>
+<li>则逻辑运算就能转换成整数数学运算</li>
+<li>最后结果如果是0则为False， 否则为True</li>
+<li>逻辑运算的短路问题</li>
+<li>逻辑运算式，按照运算顺序计算，一旦能够确定整个式子未来的值，则不再进行计算，直接返回<h1 id="逻辑运算符案例"><a href="#逻辑运算符案例" class="headerlink" title="逻辑运算符案例"></a>逻辑运算符案例</h1>a = True<br>b = False<br>c = True</li>
+</ul>
+</li>
+</ul>
 <h1 id="以下式子等价于-d-1-0-1"><a href="#以下式子等价于-d-1-0-1" class="headerlink" title="以下式子等价于 d = 1 * 0 + 1"></a>以下式子等价于 d = 1 * 0 + 1</h1><p>d = a and b or c<br>print(d)</p>
 <p>d = a or b and a<br>print(d)</p>
-<p>True<br>True<br>In <a href="">43</a>:</p>
+<p>True<br>True</p>
 <h1 id="逻辑运算的短路案例"><a href="#逻辑运算的短路案例" class="headerlink" title="逻辑运算的短路案例"></a>逻辑运算的短路案例</h1><h1 id="下面的逻辑表达式，a的值一定是True，则运行到or的时候，整个表达式不在向下计算"><a href="#下面的逻辑表达式，a的值一定是True，则运行到or的时候，整个表达式不在向下计算" class="headerlink" title="下面的逻辑表达式，a的值一定是True，则运行到or的时候，整个表达式不在向下计算"></a>下面的逻辑表达式，a的值一定是True，则运行到or的时候，整个表达式不在向下计算</h1><p>a = True or xxxxxxxxxxx</p>
 <h1 id="下面表达式，如果xxx中包含赋值表达式，则结果很难预期"><a href="#下面表达式，如果xxx中包含赋值表达式，则结果很难预期" class="headerlink" title="下面表达式，如果xxx中包含赋值表达式，则结果很难预期"></a>下面表达式，如果xxx中包含赋值表达式，则结果很难预期</h1><h1 id="代码示例（伪代码"><a href="#代码示例（伪代码" class="headerlink" title="代码示例（伪代码)"></a>代码示例（伪代码)</h1><p>b = 0<br>a = a or (b=9) and 6</p>
 <h1 id="假定上面表达式如果没有语法错误"><a href="#假定上面表达式如果没有语法错误" class="headerlink" title="假定上面表达式如果没有语法错误"></a>假定上面表达式如果没有语法错误</h1><h1 id="则b最终的值应该是0而不是9"><a href="#则b最终的值应该是0而不是9" class="headerlink" title="则b最终的值应该是0而不是9"></a>则b最终的值应该是0而不是9</h1><p>print(b)<br>print(a)</p>
 <p>  File “\<ipython-input-43-bb4253784911\>“, line 9<br>a = a or (b=9) and 6<br>   ^<br>SyntaxError: invalid syntax</ipython-input-43-bb4253784911\></p>
-<p>成员运算符号¶<br>•    用来检测某一个变量是否是另一个变量的成员<br>•    in<br>•    not in<br>In <a href="">47</a>:</p>
-<h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><p>l = <a href="">1,2,3,4,5</a><br>a = 7</p>
+<p>成员运算符号</p>
+<ul>
+<li>用来检测某一个变量是否是另一个变量的成员<ul>
+<li>in</li>
+<li>not in<h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1>l = 1，2，3，4，5，6<br>a = 7</li>
+</ul>
+</li>
+</ul>
 <p>b = a in l<br>print(b)</p>
 <p>a = 4<br>print(a in l)</p>
 <p>print(a not in l)</p>
 <p>False<br>True<br>False</p>
-<p>身份运算¶<br>•    is: 用来检测两个变量是否是同一个变量<br>▪    语法就是 var1 is var2<br>•    is not: 两个变量不是同一个变量<br>In <a href="">50</a>:<br>a = 9<br>b = 9<br>print( a is b)</p>
+<p>身份运算</p>
+<ul>
+<li>is: 用来检测两个变量是否是同一个变量<ul>
+<li>语法就是 var1 is var2</li>
+<li>is not: 两个变量不是同一个变量<br>a = 9<br>b = 9<br>print( a is b)</li>
+</ul>
+</li>
+</ul>
 <p>a = “I love wangxiaojing”<br>b = “I love wangxiaojing”<br>print( a is b)</p>
 <p>True<br>False</p>
-<p>运算符的优先级问题¶<br>•    永远记住，括号具有最高优先级<br>•    优先级表格<br>  <strong>  指数 (最高优先级)<br>•       + -   按位翻转, 一元加号和减号 (最后两个的方法名为 +@ 和 -@)<br>•      <em> / % //    乘，除，取模和取整除<br>•      + - 加法减法<br>•      >> \&lt;\&lt;   右移，左移运算符<br>•      &amp;   位 ‘AND’<br>•      ^ | 位运算符<br>•      \&lt;= \&lt; > >=   比较运算符<br>•      \&lt;> == !=    等于运算符<br>•      = %= /= //= -= += </em>= </strong>=    赋值运算符<br>•      is is not   身份运算符<br>•      in not in   成员运算符<br>•      not or and  逻辑运算符  </p>
-<p>程序结构¶<br>•    顺序<br>•    分支<br>•    循环</p>
+<p>运算符的优先级问题</p>
+<ul>
+<li>永远记住，括号具有最高优先级<ul>
+<li>优先级表格  <pre><code>**  指数 (最高优先级)
+</code></pre></li>
+<li><ul>
+<li><ul>
+<li>按位翻转, 一元加号和减号 (最后两个的方法名为 +@ 和 -@)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul>
+<li>/ % //    乘，除，取模和取整除</li>
+</ul>
+</li>
+<li><ul>
+<li><ul>
+<li>加法减法<blockquote>
+<blockquote>
+<ul>
+<li>\&lt;\&lt;   右移，左移运算符</li>
+</ul>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&amp;   位 ‘AND’</li>
+<li>^ | 位运算符</li>
+<li>\&lt;= \&lt; > >=   比较运算符</li>
+<li>\&lt;> == !=    等于运算符</li>
+<li>= %= /= //= -= += <em>= *</em>=    赋值运算符</li>
+<li>is is not   身份运算符</li>
+<li>in not in   成员运算符</li>
+<li>not or and  逻辑运算符  </li>
+</ul>
+</li>
+</ul>
+<p>程序结构</p>
+<ul>
+<li>顺序<ul>
+<li>分支</li>
+<li>循环</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
