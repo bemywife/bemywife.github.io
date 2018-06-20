@@ -1,0 +1,454 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="fightzhao">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://github.com/bemywife">
+    <!--SEO-->
+
+<meta name="description" content="Coding with love"/>
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>04-分支循环 | fightzhao</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="fightzhao" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?4261f0e9557fedf1d205cd2c720f2e54";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner2.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="">
+            <img src="/img/avatar.jpg" alt="logo头像">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题">  
+             
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/PHP/"><i class="fa fa-fw "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/数据库/"><i class="fa fa-fw "></i>数据库</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/前端/"><i class="fa fa-fw "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工作/"><i class="fa fa-fw "></i>工作</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/资源/"><i class="fa fa-fw "></i>资源</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="04-分支循环">
+            
+	            04-分支循环
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Python">
+            Python
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a href="/tags/python">
+               python
+            </a>
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2018/06/20</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="三大结构"><a href="#三大结构" class="headerlink" title="三大结构"></a>三大结构</h2><ol>
+<li>顺序</li>
+<li>分支</li>
+<li>循环</li>
+</ol>
+<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><ul>
+<li><p>分支的基本语法  </p>
+<pre><code>if 条件表达式：
+语句1
+语句2
+语句3
+</code></pre><p>  _  </p>
+</li>
+<li><p>条件表达式就是计算结果必须为布尔值的表达式</p>
+<ul>
+<li>表达式后面的冒号不能少</li>
+<li>注意if后面的出现的语句，如果属于if语句块，则必须同一个锁紧等级</li>
+<li>条件表达式结果为True执行if后面的缩进的语句块<blockquote>
+<p>if语句练习<br>如果age小于18岁，则打印信息“去叫家长<br>age = 17<br>if  age \&lt; 18:<br>print(“去叫家长吧，孩纸”)<br>print(“我们不带你玩”)<br>print(“滚球的”)</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>去叫家长吧，孩纸<br>我们不带你玩<br>滚球的</p>
+<blockquote>
+<p> if语句练习<br>如果age小于18岁，则打印信息“去叫家长”<br>age = 19<br>if  age \&lt; 18:<br>print(“去叫家长吧，孩纸”)<br>print(“我们不带你玩”)<br>print(“滚球的”)</p>
+</blockquote>
+<p>print(“开始上车喽，老司机们”)</p>
+<p>开始上车喽，老司机们</p>
+<blockquote>
+<p>if语句练习<br>如果age小于18岁，则打印信息“去叫家长”<br>age = 19<br>if  age \&lt; 18:<br>print(“去叫家长吧，孩纸”)<br>print(“我们不带你玩”)<br>print(“滚球的”)</p>
+</blockquote>
+<p>print(“开始上车喽，老司机们”)</p>
+<p>我们不带你玩<br>滚球的<br>开始上车喽，老司机们</p>
+<p>print(“今天学习for循环”)<br>gender = “男”<br>if gender == “女”:<br>print(“来，叔叔给你糖吃”)</p>
+<p>print(“开始讲for循环了”)</p>
+<p>双向分支<br>•    if…else…语句<br>  if 条件表达式:<br>•          语句1<br>•          语句2<br>•          …<br>•      else:<br>•          语句1<br>•          语句2<br>•          …..  </p>
+<p>•    双向分支有两个分支，当程序执行到if … else…语句的时候，一定会执行if或else中的一个，也仅执行一个<br>•    缩进问题，if和else一个层级，其余语句一个层级</p>
+<h3 id="input的作用是"><a href="#input的作用是" class="headerlink" title="input的作用是"></a>input的作用是</h3><ol>
+<li>在屏幕上输出括号内的字符串<ol>
+<li>接受用户输入的内容并返回到程序</li>
+<li>input返回的内容一定是字符串类型<br>gender = input(“请输入性别：”)<br>print(“你输入的性别是：{0}”.format(gender))</li>
+</ol>
+</li>
+</ol>
+<p>if  gender == “nan”:<br>print(“来，我们纪念一下今天吧，代码敲十遍”)<br>else:<br>print(“发糖喽发糖喽”)<br>print(“你是女生，特殊照顾喽”)</p>
+<p>print(“开始上课喽”)</p>
+<p>请输入性别：aklalk<br>你输入的性别是：aklalk<br>发糖喽发糖喽<br>你是女生，特殊照顾喽<br>开始上课喽</p>
+<blockquote>
+<h1 id="考试成绩判断"><a href="#考试成绩判断" class="headerlink" title="考试成绩判断"></a>考试成绩判断</h1><h1 id="90以上：-输出优秀"><a href="#90以上：-输出优秀" class="headerlink" title="90以上： 输出优秀"></a>90以上： 输出优秀</h1><h1 id="80-90：良"><a href="#80-90：良" class="headerlink" title="80-90：良"></a>80-90：良</h1><h1 id="70-80：中"><a href="#70-80：中" class="headerlink" title="70-80：中"></a>70-80：中</h1><h1 id="60-70：平"><a href="#60-70：平" class="headerlink" title="60-70：平"></a>60-70：平</h1><h1 id="60以下：-输出：我没你这撒学僧"><a href="#60以下：-输出：我没你这撒学僧" class="headerlink" title="60以下： 输出：我没你这撒学僧"></a>60以下： 输出：我没你这撒学僧</h1><h1 id="score-存放学生成绩"><a href="#score-存放学生成绩" class="headerlink" title="score  存放学生成绩"></a>score  存放学生成绩</h1><h1 id="注意input的返回值类型"><a href="#注意input的返回值类型" class="headerlink" title="注意input的返回值类型"></a>注意input的返回值类型</h1><p>score = input(“请输入学生成绩：”)</p>
+<h1 id="需要把str转换成int"><a href="#需要把str转换成int" class="headerlink" title="需要把str转换成int"></a>需要把str转换成int</h1><p>score = int(score)</p>
+</blockquote>
+<p>if score>=90:<br>print(“A”)<br>if score>= 80  and score\<90: print("b")="" if="" score="" \="">= 70 and score\<80: print("c")="" if="" score="" \="">=60 and score\&lt;70:<br>print(“D”)<br>if score \&lt; 60:<br>print(“起开，我没你这撒学僧”)</80:></90:></p>
+<p>请输入学生成绩：48<br>起开，我没你这撒学僧</p>
+<h4 id="多路分支"><a href="#多路分支" class="headerlink" title="多路分支"></a>多路分支</h4><p>•    很多分支的情况，简称多路分支<br>  if  条件表达式：<br>•          语句1<br>•          ….<br>•      elif 条件表达式：<br>•          语句1<br>•          …<br>•      elif 条件表达式：<br>•          语句1<br>•          …<br>•<br>•      …..<br>•      else:<br>•          语句1<br>•          ….  </p>
+<p>•    elif 可以由很多歌<br>•    else可选<br>•    多路分支只会选一个执行</p>
+<h1 id="score-存放学生成绩-1"><a href="#score-存放学生成绩-1" class="headerlink" title="score  存放学生成绩"></a>score  存放学生成绩</h1><h1 id="注意input的返回值类型-1"><a href="#注意input的返回值类型-1" class="headerlink" title="注意input的返回值类型"></a>注意input的返回值类型</h1><p>score = input(“请输入学生成绩：”)</p>
+<h1 id="需要把str转换成int-1"><a href="#需要把str转换成int-1" class="headerlink" title="需要把str转换成int"></a>需要把str转换成int</h1><p>score = int(score)</p>
+<p>if score>=90:<br>print(“A”)<br>elif score>= 80:<br>print(“B”)<br>elif score >= 70:<br>print(“C”)<br>elif score >=60 :<br>print(“D”)<br>else:<br>print(“起开，我没你这撒学僧”)</p>
+<p>请输入学生成绩：45<br>起开，我没你这撒学僧</p>
+<p>if语句其他：¶<br>•    if语句可以嵌套使用，但不推荐<br>•    python没有switch-case语句</p>
+<p>循环语句¶<br>•    重复执行某些固定动作或者处理基本固定的事物<br>•    分类<br>▪    for循环<br>▪    while循环 # for循环<br>•    for循环<br>  for 变量 in 序列：<br>•          语句1<br>•          语句2<br>•          …  </p>
+<blockquote>
+<h1 id="列表就是一列数字或者其他值，一般用中括号表示"><a href="#列表就是一列数字或者其他值，一般用中括号表示" class="headerlink" title="列表就是一列数字或者其他值，一般用中括号表示"></a>列表就是一列数字或者其他值，一般用中括号表示</h1><h1 id="例如-‘zhangsan’-‘lisi’-‘wangwu’-’jingjing’"><a href="#例如-‘zhangsan’-‘lisi’-‘wangwu’-’jingjing’" class="headerlink" title="例如  ‘zhangsan’, ‘lisi’, ‘wangwu’,’jingjing’"></a>例如  <a href="">‘zhangsan’, ‘lisi’, ‘wangwu’,’jingjing’</a></h1><h1 id="打印学生列表姓名"><a href="#打印学生列表姓名" class="headerlink" title="打印学生列表姓名"></a>打印学生列表姓名</h1><p>for name in  <a href="">‘zhangsan’, ‘lisi’, ‘wangwu’,’jingjing’</a>:<br>print(name)</p>
+</blockquote>
+<p>zhangsan<br>lisi<br>wangwu<br>jingjing</p>
+<blockquote>
+<h1 id="打印学生列表姓名-1"><a href="#打印学生列表姓名-1" class="headerlink" title="打印学生列表姓名"></a>打印学生列表姓名</h1><h1 id="如果是jingjign，那肯定是我的最爱呀，"><a href="#如果是jingjign，那肯定是我的最爱呀，" class="headerlink" title="如果是jingjign，那肯定是我的最爱呀，"></a>如果是jingjign，那肯定是我的最爱呀，</h1><h1 id="如果是别的学生，那要冷酷的拒绝他"><a href="#如果是别的学生，那要冷酷的拒绝他" class="headerlink" title="如果是别的学生，那要冷酷的拒绝他"></a>如果是别的学生，那要冷酷的拒绝他</h1><p>for name in  <a href="">‘zhangsan’, ‘lisi’, ‘wangwu’,’jingjing’</a>:<br>print(name)<br>if name == “jingjing”:<br>print(“我的最爱{0}出现了”.format(name))<br>else:<br>print(“同学我们不约，不约，同学请自重”)</p>
+</blockquote>
+<p>zhangsan<br>同学我们不约，不约，同学请自重<br>lisi<br>同学我们不约，不约，同学请自重<br>wangwu<br>同学我们不约，不约，同学请自重<br>jingjing<br>我的最爱jingjing出现了</p>
+<h2 id="range介绍"><a href="#range介绍" class="headerlink" title="range介绍"></a>range介绍</h2><p>•    生成一个数字序列<br>•    具体范围可以设定</p>
+<h1 id="range练习"><a href="#range练习" class="headerlink" title="range练习"></a>range练习</h1><h1 id="打印从1-10的数字"><a href="#打印从1-10的数字" class="headerlink" title="打印从1-10的数字"></a>打印从1-10的数字</h1><h1 id="注意，一般在python中，如果由表示数字范围的两个数，一般是包含左边数字不包含右边数字"><a href="#注意，一般在python中，如果由表示数字范围的两个数，一般是包含左边数字不包含右边数字" class="headerlink" title="注意，一般在python中，如果由表示数字范围的两个数，一般是包含左边数字不包含右边数字"></a>注意，一般在python中，如果由表示数字范围的两个数，一般是包含左边数字不包含右边数字</h1><h1 id="randint是特例，他左右都包含"><a href="#randint是特例，他左右都包含" class="headerlink" title="randint是特例，他左右都包含"></a>randint是特例，他左右都包含</h1><h1 id="range函数在python2-和-python3中有严重区别"><a href="#range函数在python2-和-python3中有严重区别" class="headerlink" title="range函数在python2 和 python3中有严重区别"></a>range函数在python2 和 python3中有严重区别</h1><p>for i in range(1,11):<br>print(i)</p>
+<p>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10</p>
+<p>for-else语句¶<br>•    当for循环结束的时候，会执行else语句<br>•    else语句是可选语句<br>In <a href="">21</a>:</p>
+<blockquote>
+<h1 id="for-else语句"><a href="#for-else语句" class="headerlink" title="for-else语句"></a>for-else语句</h1><h1 id="打印列表中的同学，"><a href="#打印列表中的同学，" class="headerlink" title="打印列表中的同学，"></a>打印列表中的同学，</h1><h1 id="如果没有在列表中，或者列表结束了，我们需要打印提示语句，表示不在爱了"><a href="#如果没有在列表中，或者列表结束了，我们需要打印提示语句，表示不在爱了" class="headerlink" title="如果没有在列表中，或者列表结束了，我们需要打印提示语句，表示不在爱了"></a>如果没有在列表中，或者列表结束了，我们需要打印提示语句，表示不在爱了</h1><h1 id="打印学生列表姓名-2"><a href="#打印学生列表姓名-2" class="headerlink" title="打印学生列表姓名"></a>打印学生列表姓名</h1><h1 id="如果是jingjign，那肯定是我的最爱呀，-1"><a href="#如果是jingjign，那肯定是我的最爱呀，-1" class="headerlink" title="如果是jingjign，那肯定是我的最爱呀，"></a>如果是jingjign，那肯定是我的最爱呀，</h1><h1 id="如果是别的学生，那要冷酷的拒绝他-1"><a href="#如果是别的学生，那要冷酷的拒绝他-1" class="headerlink" title="如果是别的学生，那要冷酷的拒绝他"></a>如果是别的学生，那要冷酷的拒绝他</h1><p>for name in  <a href="">‘zhangsan’, ‘lisi’, ‘wangwu’,’jingjing’</a>:<br>print(name)<br>if name == “jingjing”:<br>print(“我的最爱{0}出现了”.format(name))<br>else:<br>print(“同学我们不约，不约，同学请自重”)<br>else:<br>print(“别的都不是我的学生，不会在爱了”)<br>print(“别的都不是我的学生，不会在爱了”)<br>print(“别的都不是我的学生，不会在爱了”)<br>print(“别的都不是我的学生，不会在爱了”)</p>
+</blockquote>
+<p>zhangsan<br>同学我们不约，不约，同学请自重<br>lisi<br>同学我们不约，不约，同学请自重<br>wangwu<br>同学我们不约，不约，同学请自重<br>jingjing<br>我的最爱jingjing出现了<br>别的都不是我的学生，不会在爱了</p>
+<p>循环之break,contineu,pass¶<br>•    break： 无条件结束整个循环，简称循环猝死<br>•    continue：无条件结束本次循环，从新进入下一轮循环<br>•    pass：表示略过，通常用于站位<br>In <a href="">25</a>:</p>
+<blockquote>
+<h1 id="在数字1-10中，寻找数字7，一旦找到，打印出来，其余则什么都不做"><a href="#在数字1-10中，寻找数字7，一旦找到，打印出来，其余则什么都不做" class="headerlink" title="在数字1-10中，寻找数字7，一旦找到，打印出来，其余则什么都不做"></a>在数字1-10中，寻找数字7，一旦找到，打印出来，其余则什么都不做</h1><h1 id="for-循环中的变量表示，一般用i，k，m，n，或者indx，idx，item之类"><a href="#for-循环中的变量表示，一般用i，k，m，n，或者indx，idx，item之类" class="headerlink" title="for 循环中的变量表示，一般用i，k，m，n，或者indx，idx，item之类"></a>for 循环中的变量表示，一般用i，k，m，n，或者indx，idx，item之类</h1><h1 id="在python中，如果循环变量名称不重要，可以用下划线（-代替"><a href="#在python中，如果循环变量名称不重要，可以用下划线（-代替" class="headerlink" title="在python中，如果循环变量名称不重要，可以用下划线（_)代替"></a>在python中，如果循环变量名称不重要，可以用下划线（_)代替</h1></blockquote>
+<p>for i in range(1,11):<br>if i == 7:<br>print(“我找到了”)<br>break<br>else:<br>print(i)</p>
+<p>1<br>2<br>3<br>4<br>5<br>6<br>我找到了</p>
+<blockquote>
+<h1 id="continue语句联系"><a href="#continue语句联系" class="headerlink" title="continue语句联系"></a>continue语句联系</h1><h1 id="在数字1-10中，寻找所有偶数，找到偶数后打印偶数"><a href="#在数字1-10中，寻找所有偶数，找到偶数后打印偶数" class="headerlink" title="在数字1-10中，寻找所有偶数，找到偶数后打印偶数"></a>在数字1-10中，寻找所有偶数，找到偶数后打印偶数</h1></blockquote>
+<p>for i in range(1,11):<br>if i % 2 == 1:<br>continue<br>else:<br>print(“{0} 是偶数”.format(i))</p>
+<p>2 是偶数<br>4 是偶数<br>6 是偶数<br>8 是偶数<br>10 是偶数</p>
+<blockquote>
+<h1 id="continue语句-版本-2"><a href="#continue语句-版本-2" class="headerlink" title="continue语句 版本 2"></a>continue语句 版本 2</h1><h1 id="在数字1-10中，寻找所有偶数，找到偶数后打印偶数-1"><a href="#在数字1-10中，寻找所有偶数，找到偶数后打印偶数-1" class="headerlink" title="在数字1-10中，寻找所有偶数，找到偶数后打印偶数"></a>在数字1-10中，寻找所有偶数，找到偶数后打印偶数</h1></blockquote>
+<p>for i in range(1,11):<br>if i % 2 == 0:<br>print(“{0} 是偶数”.format(i))</p>
+<p>2 是偶数<br>4 是偶数<br>6 是偶数<br>8 是偶数<br>10 是偶数</p>
+<blockquote>
+<h1 id="continue语句-版本-2-1"><a href="#continue语句-版本-2-1" class="headerlink" title="continue语句 版本 2"></a>continue语句 版本 2</h1><h1 id="在数字1-10中，寻找所有偶数，找到偶数后打印偶数-2"><a href="#在数字1-10中，寻找所有偶数，找到偶数后打印偶数-2" class="headerlink" title="在数字1-10中，寻找所有偶数，找到偶数后打印偶数"></a>在数字1-10中，寻找所有偶数，找到偶数后打印偶数</h1><h1 id="本案例完整显示continue的用法和作用"><a href="#本案例完整显示continue的用法和作用" class="headerlink" title="本案例完整显示continue的用法和作用"></a>本案例完整显示continue的用法和作用</h1><p>for i in range(1,11):<br>if i % 2 == 1:<br>continue</p>
+</blockquote>
+<p>print(“{0} 是偶数”.format(i))</p>
+<p>2 是偶数<br>4 是偶数<br>6 是偶数<br>8 是偶数<br>10 是偶数</p>
+<blockquote>
+<h1 id="pass例子，一般用于占位"><a href="#pass例子，一般用于占位" class="headerlink" title="pass例子，一般用于占位"></a>pass例子，一般用于占位</h1><h1 id="pass没有跳过功能"><a href="#pass没有跳过功能" class="headerlink" title="pass没有跳过功能"></a>pass没有跳过功能</h1></blockquote>
+<p>for i in range(1,11):<br>pass<br>print(“wo zai zheli”)</p>
+<p>wo zai zheli<br>wo zai zheli<br>wo zai zheli<br>wo zai zheli<br>wo zai zheli<br>wo zai zheli<br>wo zai zheli<br>wo zai zheli<br>wo zai zheli<br>wo zai zheli</p>
+
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="mailto:zybemybest@163.com">fightzhao</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/blog/03.Python字符串和运算符20180620/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!--PC和WAP自适应版-->
+<div id="SOHUCS"></div>
+<script type="text/javascript">
+	(function(){var appid='cyt8KmUC1';var conf='prod_855a68d3b3d91855360a6215672a505a';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
+	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
+</script>	
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/bemywife" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="mailto:zybemybest@163.com" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/"><i class="fa" aria-hidden="true">Hexo</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/"><i class="fa" aria-hidden="true">PHP</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/"><i class="fa" aria-hidden="true">Python</i></a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作/"><i class="fa" aria-hidden="true">工作</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得/"><i class="fa" aria-hidden="true">心得</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/"><i class="fa" aria-hidden="true">数据库</i></a><span class="category-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/"><i class="fa" aria-hidden="true">六月 2018</i></a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">五月 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/"><i class="fa" aria-hidden="true">三月 2018</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">十月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/"><i class="fa" aria-hidden="true">九月 2017</i></a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">八月 2017</i></a><span class="archive-list-count">4</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/php/" style="font-size: 13.33px;">php</a> <a href="/tags/pingan/" style="font-size: 10px;">pingan</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/python命名/" style="font-size: 10px;">python命名</a> <a href="/tags/删除表内容/" style="font-size: 10px;">删除表内容</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="https://www.zhihu.com/people/fightzhao" class="fa" target="_blank">知乎</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
